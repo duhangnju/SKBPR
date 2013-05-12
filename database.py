@@ -43,10 +43,21 @@ class DatabaseManager(object):
         cursor = self.__query(sql, values)
         return cursor.rowcount
 
+    def begin(self):
+        self.__query('BEGIN')
+
+    def commit(self):
+        self.__query('COMMIT')
+
     def insert(self, sql, values=()):
         """Insert a row and return insert id."""
         cursor = self.__query(sql, values)
         return cursor.lastrowid
+
+    def batch_insert(self, sql, values):
+        """Insert many rows at a time."""
+        cursor = self.conn.cursor()
+        cursor.executemany(sql, values)
 
     def get_rows(self, sql, values=()):
         """[Generator]Get rows of SELECT query."""
@@ -55,9 +66,9 @@ class DatabaseManager(object):
         for i in xrange(cursor.rowcount):
             yield cursor.fetchone()
 
-    def get_value(self, sql, idx=0):
+    def get_value(self, sql, values=(), idx=0):
         """Get value of the first row.
         This is handy if you want to retrive COUNT(*)."""
-        cursor = self.__query(sql, use_dict=False)
+        cursor = self.__query(sql, values, use_dict=False)
         row = cursor.fetchone()
         return row[idx]
