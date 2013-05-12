@@ -8,7 +8,7 @@ import MySQLdb.cursors
 class DatabaseManager(object):
     def __init__(self, host, user, passwd, database, charset='utf8', large_scale=False):
         """Be careful using large_scale=True, SSDictCursor seems not reliable."""
-        self.conn = MySQLdb.connect(host=host, user=user, passws=passwd, db=database, charset=charset)
+        self.conn = MySQLdb.connect(host=host, user=user, passwd=passwd, db=database, charset=charset)
         self.large_scale = large_scale
 
     def close(self):
