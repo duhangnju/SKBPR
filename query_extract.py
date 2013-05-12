@@ -38,6 +38,7 @@ class QueryExtractor(object):
         # remove stop words
         valid_keywords = []
         for word in query_val.split():
+            word = word.lower()
             if word and word not in self.stopwords:
                 valid_keywords.append(word)
 
