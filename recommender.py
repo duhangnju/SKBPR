@@ -40,9 +40,13 @@ class KeywordRecommender(object):
         self.dbm = dbm
         self.ws = ws
         self.rm = rm
+        self._related_product_cache = {}
 
     @timeit
     def preprocess(self, query_train_table):
+        # empty cache so that cache from last round does not interfere with next round
+        self._related_product_cache = {}
+
         self.dbm.begin()
         self.dbm.query('TRUNCATE TABLE keyword');
         self.dbm.query('TRUNCATE TABLE keyword_product_weight');
@@ -92,8 +96,9 @@ class KeywordRecommender(object):
         return product_weight_list[:limit]
 
     def __fetch_related_products(self, keyword):
-        # TODO: use generator eliminates the potential to cache
-        return ((row['product'], row['weight']) for row in self.dbm.get_rows('SELECT product, weight FROM keyword_product_weight WHERE keyword = %s', (keyword,)))
+        if not self._related_product_cache.has_key(keyword):
+            self._related_product_cache[keyword] = [(row['product'], row['weight']) for row in self.dbm.get_rows('SELECT product, weight FROM keyword_product_weight WHERE keyword = %s', (keyword,))]
+        return self._related_product_cache[keyword]
 
 
 class RelevanceMeasure(object):
