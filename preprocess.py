@@ -3,7 +3,6 @@ Process raw data.
 Populate query, product, query_product tables with data from user, visit.
 """
 
-import config
 from utils import timeit
 from query_extract import load_stop_words, QueryExtractor
 
@@ -11,14 +10,14 @@ class RawDataPreprocessor(object):
     """Populate query, product, query_product tables.
     Make sure to source tables.sql before using this class."""
 
-    def __init__(self, dbm):
+    def __init__(self, dbm, stopwords_file=None):
         """
         @param dbm a DatabaseManager
         """
         self.dbm = dbm
         stopwords = None
-        if hasattr(config, 'stopwords'):
-            stopwords = load_stop_words(config.stopwords)
+        if stopwords_file:
+            stopwords = load_stop_words(stopwords_file)
         self.query_extractor = QueryExtractor(stopwords)
 
     def run(self):
@@ -72,10 +71,14 @@ class RawDataPreprocessor(object):
         self.dbm.commit()
 
 if __name__ == '__main__':
+    import config
     from database import DatabaseManager
     dbm = DatabaseManager(config.DB_HOST, config.DB_USER, config.DB_PASSWORD, config.DB_NAME)
     try:
-        preprocessor = RawDataPreprocessor(dbm)
+        swf = None
+        if hasattr(config, 'stopwords'):
+            swf = config.stopwords
+        preprocessor = RawDataPreprocessor(dbm, swf)
         preprocessor.run()
     finally:
         dbm.close()

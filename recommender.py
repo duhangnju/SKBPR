@@ -3,7 +3,6 @@ Keyword Recommenders.
 """
 
 import math
-import config
 from utils import timeit
 from collections import defaultdict
 
@@ -114,6 +113,7 @@ class BCIPFMeasure(RelevanceMeasure):
 
 
 if __name__ == '__main__':
+    import config
     from database import DatabaseManager
     from word_segment import SpaceWordSegmenter
     dbm = DatabaseManager(config.DB_HOST, config.DB_USER, config.DB_PASSWORD, config.DB_NAME)
