@@ -7,13 +7,13 @@ from utils import timeit
 from collections import defaultdict
 
 class HottestRecommender(object):
-    def __init__(self, dbm, limit=10):
+    def __init__(self, limit, dbm, *args, **kwargs):
         """
         @param dbm a DatabaseManager
         @param limit the (maximal) number of recommended products at a time
         """
-        self.dbm = dbm
         self.limit = limit
+        self.dbm = dbm
         self.recommend_list = []
 
     @timeit
@@ -25,18 +25,19 @@ class HottestRecommender(object):
             self.recommend_list.append((row['pageinfo'], row['count']))
         #print self.recommend_list
 
-    def recommend(self, query, limit='discarded'):
+    def recommend(self, query):
         return self.recommend_list
 
 
 class KeywordRecommender(object):
-    def __init__(self, dbm, ws, rm):
+    def __init__(self, limit, dbm, ws, rm):
         """
         Make sure to source rec_tables.sql before using this class.
         @param dbm a DatabaseManager
         @param ws a WordSegmenter
         @param rm a RelevanceMeasure
         """
+        self.limit = limit
         self.dbm = dbm
         self.ws = ws
         self.rm = rm
@@ -82,7 +83,7 @@ class KeywordRecommender(object):
 
         self.dbm.commit()
 
-    def recommend(self, query, limit=10):
+    def recommend(self, query):
         keywords = self.ws.segment(query)
         product_weight = defaultdict(float)
         # gather product weights
@@ -93,7 +94,7 @@ class KeywordRecommender(object):
         # convert dict to list for sorting
         product_weight_list = [item for item in product_weight.iteritems()]
         product_weight_list.sort(key=lambda t: t[1], reverse=True)
-        return product_weight_list[:limit]
+        return product_weight_list[:self.limit]
 
     def __fetch_related_products(self, keyword):
         if not self._related_product_cache.has_key(keyword):
@@ -125,7 +126,7 @@ if __name__ == '__main__':
     try:
         word_segmenter = SpaceWordSegmenter()
         rmeasure = BCIPFMeasure()
-        recommender = KeywordRecommender(dbm, word_segmenter, rmeasure)
+        recommender = KeywordRecommender(10, dbm, word_segmenter, rmeasure)
         recommender.preprocess('query_train')
     finally:
         dbm.close()
