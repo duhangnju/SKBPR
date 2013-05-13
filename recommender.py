@@ -7,6 +7,28 @@ import config
 from utils import timeit
 from collections import defaultdict
 
+class HottestRecommender(object):
+    def __init__(self, dbm, limit=10):
+        """
+        @param dbm a DatabaseManager
+        @param limit the (maximal) number of recommended products at a time
+        """
+        self.dbm = dbm
+        self.limit = limit
+        self.recommend_list = []
+
+    @timeit
+    def preprocess(self):
+        for row in self.dbm.get_rows('''SELECT pageinfo, COUNT(id) count FROM visit
+            WHERE pagetype = 'product' AND pageinfo != ''
+            GROUP BY pageinfo ORDER BY count DESC LIMIT %s''', (self.limit,)):
+            self.recommend_list.append((row['pageinfo'], row['count']))
+        print self.recommend_list
+
+    def recommend(self, query, limit='discarded'):
+        return self.recommend_list
+
+
 class KeywordRecommender(object):
     def __init__(self, dbm, ws, rm):
         """
@@ -70,6 +92,7 @@ class KeywordRecommender(object):
         return product_weight_list[:limit]
 
     def __fetch_related_products(self, keyword):
+        # TODO: use generator eliminates the potential to cache
         return ((row['product'], row['weight']) for row in self.dbm.get_rows('SELECT product, weight FROM keyword_product_weight WHERE keyword = %s', (keyword,)))
 
 
