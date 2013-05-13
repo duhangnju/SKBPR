@@ -56,14 +56,30 @@ class KeywordRecommender(object):
 
         self.dbm.commit()
 
+    def recommend(self, query, limit=10):
+        keywords = self.ws.segment(query)
+        product_weight = defaultdict(float)
+        # gather product weights
+        for kw in keywords:
+            for product, weight in self.__fetch_related_products(kw):
+                product_weight[product] += weight
+
+        # convert dict to list for sorting
+        product_weight_list = [item for item in product_weight.iteritems()]
+        product_weight_list.sort(key=lambda t: t[1], reverse=True)
+        return product_weight_list[:limit]
+
+    def __fetch_related_products(self, keyword):
+        return ((row['product'], row['weight']) for row in self.dbm.get_rows('SELECT product, weight FROM keyword_product_weight WHERE keyword = %s', (keyword,)))
+
 
 class RelevanceMeasure(object):
-    def get_relevance(self, keyword, product, count, related_product_count, related_keyword_count):
+    def get_relevance(self, keyword, product, count, related_product_count, related_keyword_count, all_product_count):
         raise NotImplemented
 
 
 class BCMeasure(RelevanceMeasure):
-    def get_relevance(self, keyword, product, count, related_product_count, related_keyword_count, all_product_count):
+    def get_relevance(self, keyword, product, count, *args):
         return count
 
 
@@ -71,6 +87,7 @@ class BCIPFMeasure(RelevanceMeasure):
     def get_relevance(self, keyword, product, count, related_product_count, related_keyword_count, all_product_count):
         ipf = math.log(1.0 * all_product_count / related_product_count)
         return count * ipf
+
 
 if __name__ == '__main__':
     from database import DatabaseManager
