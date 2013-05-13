@@ -18,12 +18,13 @@ class HottestRecommender(object):
         self.recommend_list = []
 
     @timeit
-    def preprocess(self):
+    def preprocess(self, query_train_table):
         for row in self.dbm.get_rows('''SELECT pageinfo, COUNT(id) count FROM visit
-            WHERE pagetype = 'product' AND pageinfo != ''
-            GROUP BY pageinfo ORDER BY count DESC LIMIT %s''', (self.limit,)):
+            WHERE pagetype = 'product' AND pageinfo != '' AND userid IN (
+                SELECT user_id FROM %s
+            ) GROUP BY pageinfo ORDER BY count DESC LIMIT %d''' % (query_train_table, self.limit)):
             self.recommend_list.append((row['pageinfo'], row['count']))
-        print self.recommend_list
+        #print self.recommend_list
 
     def recommend(self, query, limit='discarded'):
         return self.recommend_list
@@ -42,7 +43,7 @@ class KeywordRecommender(object):
         self.rm = rm
 
     @timeit
-    def preprocess(self):
+    def preprocess(self, query_train_table):
         self.dbm.begin()
         self.dbm.query('TRUNCATE TABLE keyword');
         self.dbm.query('TRUNCATE TABLE keyword_product_weight');
@@ -52,7 +53,7 @@ class KeywordRecommender(object):
         keyword_product_count = defaultdict(lambda: defaultdict(int))
         product_keyword_count = defaultdict(lambda: defaultdict(int))
 
-        for qrow in self.dbm.get_rows('SELECT id, query FROM query'):
+        for qrow in self.dbm.get_rows('SELECT id, query FROM %s' % query_train_table):
             # TODO: consider sequence
             products = [qprow['p_name'] for qprow in self.dbm.get_rows('SELECT DISTINCT(product_name) p_name FROM query_product WHERE query_id = %s', (qrow['id'],))]
 
@@ -120,6 +121,6 @@ if __name__ == '__main__':
         word_segmenter = SpaceWordSegmenter()
         rmeasure = BCIPFMeasure()
         recommender = KeywordRecommender(dbm, word_segmenter, rmeasure)
-        recommender.preprocess()
+        recommender.preprocess('query_train')
     finally:
         dbm.close()
