@@ -3,14 +3,22 @@ Orchestrate recommender/splitter/evaluators to run a SKBPR test.
 """
 
 class Tester(object):
-    def __init__(self, dbm, recommender, splitter, evaluator):
+    def __init__(self, dbm, recommenders, splitter, evaluator):
         self.dbm = dbm
-        self.recommender = recommender
+        self.recommenders = recommenders
         self.splitter = splitter
         self.evaluator = evaluator
 
     def run(self):
+        # split only once to ensure the same for all recommenders
         self.splitter.split('query')
+        for recommender in self.recommenders:
+            self.evaluator.reset()
+            self.splitter.reset()
+            self.__run(recommender)
+
+    def __run(self, recommender):
+        print '\nRunning %s ...' % recommender.__class__
 
         _round = 1
         while self.splitter.more_rounds():
@@ -20,13 +28,15 @@ class Tester(object):
             print 'Round', _round
 
             # train recommender
-            self.recommender.preprocess('query_train')
-            self.round_statistics()
+            recommender.preprocess('query_train')
+            if recommender.use_keywords():
+                # for recommenders not using keywords, the statistics are meaningless
+                self.round_statistics()
 
             # start test
             for row in self.dbm.get_rows('SELECT id, query from query_test'):
                 actual_products = self.get_actual_products(row['id'])
-                recommended_products = set(rec[0] for rec in self.recommender.recommend(row['query']))
+                recommended_products = set(rec[0] for rec in recommender.recommend(row['query']))
                 self.evaluator.evaluate(actual_products, recommended_products)
 
             # let evaluate record result of this round

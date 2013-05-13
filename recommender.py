@@ -16,6 +16,9 @@ class HottestRecommender(object):
         self.dbm = dbm
         self.recommend_list = []
 
+    def use_keywords(self):
+        return False
+
     @timeit
     def preprocess(self, query_train_table):
         for row in self.dbm.get_rows('''SELECT pageinfo, COUNT(id) count FROM visit
@@ -42,6 +45,9 @@ class KeywordRecommender(object):
         self.ws = ws
         self.rm = rm
         self._related_product_cache = {}
+
+    def use_keywords(self):
+        return True
 
     @timeit
     def preprocess(self, query_train_table):

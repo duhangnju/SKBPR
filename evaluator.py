@@ -6,6 +6,9 @@ class ConfusionMatrixEvaluator(object):
     """Evaluate result's precision and recall."""
 
     def __init__(self):
+        self.reset()
+
+    def reset(self):
         self.results = []
 
     def round_start(self):
@@ -31,6 +34,13 @@ class ConfusionMatrixEvaluator(object):
 
     def summary(self):
         print# empty line
+        all_precision = 0.0
+        all_recall = 0.0
         for i, result in enumerate(self.results, 1):
             precision, recall = result
             print 'Round %2d: precision: %.4f | recall: %.4f' % (i, precision, recall)
+            all_precision += precision
+            all_recall += recall
+
+        n = len(self.results)
+        print ' Average: precision: %.4f | recall: %.4f' % (all_precision/n, all_recall/n)

@@ -21,6 +21,9 @@ class KFoldSplitter(object):
         self.dbm = dbm
         self.k = k
         self.current_table = ''
+        self.reset()
+
+    def reset(self):
         self.current_round = 1
 
     def split(self, table):
