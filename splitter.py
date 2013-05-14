@@ -2,6 +2,8 @@
 Stuff which splits dataset into train and test sets.
 """
 
+from utils import timeit
+
 class KFoldSplitter(object):
     """Splitter that splits a table into k groups of (almost) equal size.
     Before using this splitter, make sure the table to split has a `group_id` column.
@@ -26,6 +28,7 @@ class KFoldSplitter(object):
     def reset(self):
         self.current_round = 1
 
+    @timeit
     def split(self, table):
         """After splitting, 1 <= table.group_id <= k"""
         self.current_table = table

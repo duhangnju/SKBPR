@@ -16,6 +16,9 @@ class HottestRecommender(object):
         self.dbm = dbm
         self.recommend_list = []
 
+    def __str__(self):
+        return 'Hottest Recommender[N=%d]' % self.limit
+
     def use_keywords(self):
         return False
 
@@ -45,6 +48,9 @@ class KeywordRecommender(object):
         self.ws = ws
         self.rm = rm
         self._related_product_cache = {}
+
+    def __str__(self):
+        return 'Keyword Recommender with %s[N=%d]' % (self.rm, self.limit)
 
     def use_keywords(self):
         return True
@@ -117,11 +123,17 @@ class BCMeasure(RelevanceMeasure):
     def get_relevance(self, keyword, product, count, *ignored):
         return count
 
+    def __str__(self):
+        return 'BC'
+
 
 class BCIPFMeasure(RelevanceMeasure):
     def get_relevance(self, keyword, product, count, related_product_count, related_keyword_count, all_product_count):
         ipf = math.log(1.0 * all_product_count / related_product_count)
         return count * ipf
+
+    def __str__(self):
+        return 'BC-IPF'
 
 
 if __name__ == '__main__':

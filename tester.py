@@ -18,7 +18,7 @@ class Tester(object):
             self.__run(recommender)
 
     def __run(self, recommender):
-        print '\nRunning %s ...' % recommender.__class__
+        print '\nRunning %s ...' % recommender
 
         _round = 1
         while self.splitter.more_rounds():
