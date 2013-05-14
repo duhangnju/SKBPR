@@ -55,7 +55,6 @@ class KeywordRecommender(object):
     def use_keywords(self):
         return True
 
-    @timeit
     def preprocess(self, query_train_table):
         # empty cache so that cache from last round does not interfere with next round
         self._related_product_cache = {}
@@ -76,6 +75,7 @@ class KeywordRecommender(object):
     def _before_preprocess(self):
         pass
 
+    @timeit
     def _build_keyword_product_mapping(self, query_train_table):
         self.keyword_count = defaultdict(int)
         self.keyword_product_count = defaultdict(lambda: defaultdict(int))
@@ -102,6 +102,7 @@ class KeywordRecommender(object):
         Multiple browses in a session always count 1."""
         return 1
 
+    @timeit
     def _build_product_keyword_mapping(self):
         # construct product_keyword_count
         # it's actually equivalent to keyword_product_count, but can let compute
@@ -111,6 +112,7 @@ class KeywordRecommender(object):
             for p, c in dt.iteritems():
                 self.product_keyword_count[p][kw] = c
 
+    @timeit
     def _measure_relevance(self):
         # calculate keyword-product relevance
         all_product_count = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
@@ -142,6 +144,46 @@ class KeywordRecommender(object):
         if not self._related_product_cache.has_key(keyword):
             self._related_product_cache[keyword] = [(row['product'], row['weight']) for row in self.dbm.get_rows('SELECT product, weight FROM keyword_product_weight WHERE keyword = %s', (keyword,))]
         return self._related_product_cache[keyword]
+
+
+class WeightedSequenceRelevanceMixin(object):
+    @timeit
+    def _measure_relevance(self):
+        # calculate keyword-product relevance
+        all_product_count = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
+        for keyword, count in self.keyword_count.iteritems():
+            self.dbm.insert('INSERT INTO keyword (keyword, count) VALUES (%s, %s)', (keyword, count))
+            related_product_count = len(self.keyword_product_count[keyword].keys())
+
+            for product, count in self.keyword_product_count[keyword].iteritems():
+                related_keyword_count = len(self.product_keyword_count[product].keys())
+                # get average sequence from database
+                avg_sequence = self.dbm.get_value('select avg(sequence) from query_product where product_name = %s AND query_id in (select query_id from keyword_query where keyword = %s)', (product, keyword))
+                # sub-class can override sequence_weight
+                relevance = self.sequence_weight(avg_sequence) * self.rm.get_relevance(keyword, product, count, related_product_count, related_keyword_count, all_product_count, avg_sequence)
+                self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
+
+    def sequence_weight(self, avg_sequence):
+        return 1
+
+
+# ensure WSRM._measure_relevance will be called with putting it before KeywordRecommener
+# ref: http://python-history.blogspot.com/2010/06/method-resolution-order.html
+class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommender):
+    """This recommender weights browse count by distribution of sequence."""
+
+    @timeit
+    def _before_preprocess(self):
+        # get sequence distribution
+        max_occurrence = self.dbm.get_value('SELECT MAX(c) FROM (SELECT sequence, COUNT(sequence) c FROM query_product GROUP BY sequence) T')
+        self.sequence_dist = {row['sequence']: row['ratio'] for row in self.dbm.get_rows('SELECT sequence, COUNT(sequence)/%s ratio FROM query_product GROUP BY sequence', (max_occurrence,))}
+
+    def get_browse_count(self, sequences):
+        """Multiple browses in a session always count 1."""
+        return sum((self.sequence_dist[int(seq)] for seq in sequences.split(',')))
+
+    def __str__(self):
+        return 'Sequenced Keyword Recommender with %s[N=%d]' % (self.rm, self.limit)
 
 
 class RelevanceMeasure(object):
