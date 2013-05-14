@@ -69,16 +69,20 @@ class KeywordRecommender(object):
         keyword_product_count = defaultdict(lambda: defaultdict(int))
 
         for qrow in self.dbm.get_rows('SELECT id, query FROM %s' % query_train_table):
-            # TODO: consider sequence
-            products = [qprow['p_name'] for qprow in self.dbm.get_rows('SELECT DISTINCT(product_name) p_name FROM query_product WHERE query_id = %s', (qrow['id'],))]
+            # GROUP_CONCAT returns a comma-separeted string
+            products = [(qprow['product_name'], qprow['sequences']) for qprow in self.dbm.get_rows('SELECT product_name, GROUP_CONCAT(sequence) AS sequences FROM query_product WHERE query_id = %s GROUP BY product_name', (qrow['id'],))]
 
             keywords = self.ws.segment(qrow['query'])
             for kw in keywords:
                 keyword_count[kw] += 1
 
-                for p in products:
-                    keyword_product_count[kw][p] += 1
-
+            for p, sequences in products:
+                # get product sequence in this session
+                sequences = map(int, sequences.split(','))
+                count = self.get_browse_count(sequences)
+                # update keyword_product_count
+                for kw in keywords:
+                    keyword_product_count[kw][p] += count
 
         # construct product_keyword_count
         # it's actually equivalent to keyword_product_count, but can let compute
@@ -101,6 +105,10 @@ class KeywordRecommender(object):
                 self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
 
         self.dbm.commit()
+
+    def get_browse_count(self, sequences):
+        """Multiple browses in a session always count 1."""
+        return 1
 
     def recommend(self, query):
         keywords = self.ws.segment(query)
