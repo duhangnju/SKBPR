@@ -7,7 +7,7 @@ from utils import timeit
 from collections import defaultdict
 
 class HottestRecommender(object):
-    def __init__(self, limit, dbm, *args, **kwargs):
+    def __init__(self, limit, dbm, *ignored):
         """
         @param dbm a DatabaseManager
         @param limit the (maximal) number of recommended products at a time
@@ -114,7 +114,7 @@ class RelevanceMeasure(object):
 
 
 class BCMeasure(RelevanceMeasure):
-    def get_relevance(self, keyword, product, count, *args):
+    def get_relevance(self, keyword, product, count, *ignored):
         return count
 
 
