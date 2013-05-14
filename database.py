@@ -59,6 +59,12 @@ class DatabaseManager(object):
         cursor = self.conn.cursor()
         cursor.executemany(sql, values)
 
+    def get_one_row(self, sql, values=()):
+        """Get one row of SELECT query."""
+        cursor = self.__query(sql, values)
+        row = cursor.fetchone()
+        return row
+
     def get_rows(self, sql, values=()):
         """[Generator]Get rows of SELECT query."""
         cursor = self.__query(sql, values)
@@ -68,6 +74,7 @@ class DatabaseManager(object):
 
     def get_value(self, sql, values=(), idx=0):
         """Get value of the first row.
+        Does not check for empty row, so ensure the result is not empty.
         This is handy if you want to retrive COUNT(*)."""
         cursor = self.__query(sql, values, use_dict=False)
         row = cursor.fetchone()
