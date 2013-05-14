@@ -67,7 +67,6 @@ class KeywordRecommender(object):
         # build keyword-product and product-keyword mapping
         keyword_count = defaultdict(int)
         keyword_product_count = defaultdict(lambda: defaultdict(int))
-        product_keyword_count = defaultdict(lambda: defaultdict(int))
 
         for qrow in self.dbm.get_rows('SELECT id, query FROM %s' % query_train_table):
             # TODO: consider sequence
@@ -79,7 +78,15 @@ class KeywordRecommender(object):
 
                 for p in products:
                     keyword_product_count[kw][p] += 1
-                    product_keyword_count[p][kw] += 1
+
+
+        # construct product_keyword_count
+        # it's actually equivalent to keyword_product_count, but can let compute
+        # related_product_count faster
+        product_keyword_count = defaultdict(dict)
+        for kw, dt in keyword_product_count.iteritems():
+            for p, c in dt.iteritems():
+                product_keyword_count[p][kw] = c
 
         # calculate keyword-product relevance
         all_product_count = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
