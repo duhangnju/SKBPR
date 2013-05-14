@@ -65,9 +65,11 @@ class DatabaseManager(object):
         cursor.executemany(sql, values)
         cursor.close()
 
-    def get_one_row(self, sql, values=()):
-        """Get one row of SELECT query."""
-        cursor = self.__query(sql, values)
+    def get_one_row(self, sql, values=(), return_tuple=False):
+        """Get one row of SELECT query.
+        Tip: setting return_tuple=True returns tuple so you can unpack with ease.
+        """
+        cursor = self.__query(sql, values, use_dict=not return_tuple)
         row = cursor.fetchone()
         cursor.close()
         return row
