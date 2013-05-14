@@ -22,7 +22,10 @@ from splitter import KFoldSplitter
 from database import DatabaseManager
 from word_segment import SpaceWordSegmenter
 from evaluator import ConfusionMatrixEvaluator
-from recommender import KeywordRecommender, HottestRecommender, BCIPFMeasure
+from recommender import KeywordRecommender, HottestRecommender
+from recommender import BCMeasure, BCIPFMeasure
+
+NoMeasure = lambda: None
 
 # Top-N
 N = 5
@@ -33,7 +36,12 @@ Splitter = KFoldSplitter
 WordSegmenter = SpaceWordSegmenter
 RelevanceMeasure = BCIPFMeasure
 Evaluator = ConfusionMatrixEvaluator
-Recommenders = (KeywordRecommender, HottestRecommender)
+Recommenders = [
+    (HottestRecommender, NoMeasure),
+    (KeywordRecommender, BCIPFMeasure),
+    (KeywordRecommender, BCMeasure),
+]
 
 # Misc
+session_duration = 86400
 stopwords = 'stopwords'

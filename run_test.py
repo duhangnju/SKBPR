@@ -6,8 +6,7 @@ if __name__ == '__main__':
     try:
         # set up recommender
         word_segmenter = config.WordSegmenter()
-        rmeasure = config.RelevanceMeasure()
-        recommenders = [R(config.N, dbm, word_segmenter, rmeasure) for R in config.Recommenders]
+        recommenders = [R(config.N, dbm, word_segmenter, M()) for R, M in config.Recommenders]
 
         # set up tester
         splitter = config.Splitter(dbm, config.K)
