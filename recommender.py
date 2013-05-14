@@ -62,53 +62,68 @@ class KeywordRecommender(object):
 
         self.dbm.begin()
         self.dbm.query('TRUNCATE TABLE keyword');
+        self.dbm.query('TRUNCATE TABLE keyword_query');
         self.dbm.query('TRUNCATE TABLE keyword_product_weight');
 
-        # build keyword-product and product-keyword mapping
-        keyword_count = defaultdict(int)
-        keyword_product_count = defaultdict(lambda: defaultdict(int))
+        # these methods can be overridden by sub-classes
+        self._before_preprocess()
+        self._build_keyword_product_mapping(query_train_table)
+        self._build_product_keyword_mapping()
+        self._measure_relevance()
 
+        self.dbm.commit()
+
+    def _before_preprocess(self):
+        pass
+
+    def _build_keyword_product_mapping(self, query_train_table):
+        self.keyword_count = defaultdict(int)
+        self.keyword_product_count = defaultdict(lambda: defaultdict(int))
         for qrow in self.dbm.get_rows('SELECT id, query FROM %s' % query_train_table):
             # GROUP_CONCAT returns a comma-separeted string
             products = [(qprow['product_name'], qprow['sequences']) for qprow in self.dbm.get_rows('SELECT product_name, GROUP_CONCAT(sequence) AS sequences FROM query_product WHERE query_id = %s GROUP BY product_name', (qrow['id'],))]
 
-            keywords = self.ws.segment(qrow['query'])
+            # remove duplicate
+            keywords = set(self.ws.segment(qrow['query']))
             for kw in keywords:
-                keyword_count[kw] += 1
+                self.keyword_count[kw] += 1
+                # store keyword-query relations in db
+                self.dbm.insert('INSERT INTO keyword_query (keyword, query_id) VALUES (%s, %s)', (kw, qrow['id']))
 
             for p, sequences in products:
                 # get product sequence in this session
-                sequences = map(int, sequences.split(','))
                 count = self.get_browse_count(sequences)
                 # update keyword_product_count
                 for kw in keywords:
-                    keyword_product_count[kw][p] += count
+                    self.keyword_product_count[kw][p] += count
 
+    def get_browse_count(self, sequences):
+        """Overrideable by sub-class.
+        Multiple browses in a session always count 1."""
+        return 1
+
+    def _build_product_keyword_mapping(self):
         # construct product_keyword_count
         # it's actually equivalent to keyword_product_count, but can let compute
         # related_product_count faster
-        product_keyword_count = defaultdict(dict)
-        for kw, dt in keyword_product_count.iteritems():
+        self.product_keyword_count = defaultdict(dict)
+        for kw, dt in self.keyword_product_count.iteritems():
             for p, c in dt.iteritems():
-                product_keyword_count[p][kw] = c
+                self.product_keyword_count[p][kw] = c
 
+    def _measure_relevance(self):
         # calculate keyword-product relevance
         all_product_count = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
-        for keyword, count in keyword_count.iteritems():
+        for keyword, count in self.keyword_count.iteritems():
+            # will be used for statistics
             self.dbm.insert('INSERT INTO keyword (keyword, count) VALUES (%s, %s)', (keyword, count))
-            related_product_count = len(keyword_product_count[keyword].keys())
+            related_product_count = len(self.keyword_product_count[keyword].keys())
 
-            for product, count in keyword_product_count[keyword].iteritems():
-                related_keyword_count = len(product_keyword_count[product].keys())
+            for product, count in self.keyword_product_count[keyword].iteritems():
+                related_keyword_count = len(self.product_keyword_count[product].keys())
                 # delegate to sub-classes
                 relevance = self.rm.get_relevance(keyword, product, count, related_product_count, related_keyword_count, all_product_count)
                 self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
-
-        self.dbm.commit()
-
-    def get_browse_count(self, sequences):
-        """Multiple browses in a session always count 1."""
-        return 1
 
     def recommend(self, query):
         keywords = self.ws.segment(query)
