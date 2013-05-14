@@ -96,10 +96,10 @@ class KeywordRecommender(object):
         all_product_count = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
         for keyword, count in keyword_count.iteritems():
             self.dbm.insert('INSERT INTO keyword (keyword, count) VALUES (%s, %s)', (keyword, count))
-            related_product_count = sum(keyword_product_count[keyword].values())
+            related_product_count = len(keyword_product_count[keyword].keys())
 
             for product, count in keyword_product_count[keyword].iteritems():
-                related_keyword_count = sum(product_keyword_count[product].values())
+                related_keyword_count = len(product_keyword_count[product].keys())
                 # delegate to sub-classes
                 relevance = self.rm.get_relevance(keyword, product, count, related_product_count, related_keyword_count, all_product_count)
                 self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
