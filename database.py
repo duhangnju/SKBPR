@@ -32,7 +32,8 @@ class DatabaseManager(object):
     def __query(self, sql, values=(), use_dict=True):
         """Execute any SQL.
         You can use %s placeholder in sql and fill with values.
-        return cursor"""
+        Note: it's the call's responsibility to call .close() on the returned cursor
+        @return cursor"""
         cursor = self.conn.cursor(self.__get_cursor_type(use_dict))
 
         cursor.execute(sql, values)
@@ -41,28 +42,34 @@ class DatabaseManager(object):
     def query(self, sql, values=()):
         """Execute any SQL and return affected rows."""
         cursor = self.__query(sql, values)
-        return cursor.rowcount
+        rowcount = cursor.rowcount
+        cursor.close()
+        return rowcount
 
     def begin(self):
-        self.__query('BEGIN')
+        self.query('BEGIN')
 
     def commit(self):
-        self.__query('COMMIT')
+        self.query('BEGIN')
 
     def insert(self, sql, values=()):
         """Insert a row and return insert id."""
         cursor = self.__query(sql, values)
-        return cursor.lastrowid
+        lastrowid = cursor.lastrowid
+        cursor.close()
+        return lastrowid
 
     def batch_insert(self, sql, values):
         """Insert many rows at a time."""
         cursor = self.conn.cursor()
         cursor.executemany(sql, values)
+        cursor.close()
 
     def get_one_row(self, sql, values=()):
         """Get one row of SELECT query."""
         cursor = self.__query(sql, values)
         row = cursor.fetchone()
+        cursor.close()
         return row
 
     def get_rows(self, sql, values=()):
@@ -72,10 +79,13 @@ class DatabaseManager(object):
         for i in xrange(cursor.rowcount):
             yield cursor.fetchone()
 
+        cursor.close()
+
     def get_value(self, sql, values=(), idx=0):
         """Get value of the first row.
         Does not check for empty row, so ensure the result is not empty.
         This is handy if you want to retrive COUNT(*)."""
         cursor = self.__query(sql, values, use_dict=False)
         row = cursor.fetchone()
+        cursor.close()
         return row[idx]
