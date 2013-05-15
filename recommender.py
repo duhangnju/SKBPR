@@ -176,7 +176,7 @@ class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommen
     def _before_preprocess(self):
         # get sequence distribution
         max_occurrence = self.dbm.get_value('SELECT MAX(c) FROM (SELECT sequence, COUNT(sequence) c FROM query_product GROUP BY sequence) T')
-        self.sequence_dist = {row['sequence']: row['ratio'] for row in self.dbm.get_rows('SELECT sequence, COUNT(sequence)/%s ratio FROM query_product GROUP BY sequence', (max_occurrence,))}
+        self.sequence_dist = {row['sequence']: float(row['ratio']) for row in self.dbm.get_rows('SELECT sequence, COUNT(sequence)/%s ratio FROM query_product GROUP BY sequence', (max_occurrence,))}
 
     def get_browse_count(self, sequences):
         """Multiple browses in a session always count 1."""
