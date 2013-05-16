@@ -96,15 +96,11 @@ class KeywordRecommender(object):
         self.dbm.query('TRUNCATE TABLE keyword_product_weight');
 
         # these methods can be overridden by sub-classes
-        self._before_preprocess()
         self._build_keyword_product_mapping(query_train_table)
         self._build_product_keyword_mapping()
         self._measure_relevance()
 
         self.dbm.commit()
-
-    def _before_preprocess(self):
-        pass
 
     @timeit
     def _build_keyword_product_mapping(self, query_train_table):
@@ -248,10 +244,15 @@ class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommen
     """This recommender weights browse count by distribution of sequence."""
 
     @timeit
-    def _before_preprocess(self):
-        # get sequence distribution
+    def preprocess(self, query_train_table):
+        # first, get sequence distribution
+        # TODO: exclude entries from query_test
         max_occurrence = self.dbm.get_value('SELECT MAX(c) FROM (SELECT sequence, COUNT(sequence) c FROM query_product GROUP BY sequence) T')
+        # TODO: ditto
         self.sequence_dist = {row['sequence']: float(row['ratio']) for row in self.dbm.get_rows('SELECT sequence, COUNT(sequence)/%s ratio FROM query_product GROUP BY sequence', (max_occurrence,))}
+
+        # then, call KeywordRecommender's preprocess
+        KeywordRecommender.preprocess(self, query_train_table)
 
     def get_browse_count(self, sequences):
         """Multiple browses in a session always count 1."""
