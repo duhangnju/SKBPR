@@ -180,6 +180,40 @@ class KeywordRecommender(object):
         return self._related_product_cache[keyword]
 
 
+class KeywordRecommenderHottestFallback(KeywordRecommender, HottestRecommender):
+    """A recommender which uses KeywordRecommender's recommendations first,
+    but turns to HottestRecommender if its recommendations are not enough."""
+
+    def __init__(self, *args):
+        """Identical to that of KeywordRecommender"""
+        KeywordRecommender.__init__(self, *args)
+        HottestRecommender.__init__(self, *args)
+
+    def __str__(self):
+        return 'Keyword Recommender with Hottest Recommender fallback with %s[N=%d]' % (self.rm, self.limit)
+
+    def preprocess(self, query_train_table):
+        KeywordRecommender.preprocess(self, query_train_table)
+        HottestRecommender.preprocess(self, query_train_table)
+
+    def recommend(self, query):
+        recommendations = KeywordRecommender.recommend(self, query)
+        num_rec = len(recommendations)
+        if num_rec == self.limit:
+            return recommendations
+
+        # ask HottestRecommender for more
+        # note that create list in order not to break HottestRecommender.recommend_list
+        hot_recommendations = HottestRecommender.recommend(self, query)[:self.limit-num_rec]
+
+        # ensure hot_recommendations's weight is no greater than any from keyword recommendations
+        max_hot_rec_weight = hot_recommendations[0][1]
+        min_key_rec_weight = recommendations[-1][1] if num_rec > 0 else max_hot_rec_weight
+        recommendations.extend((t[0], 1.0*min_key_rec_weight*t[1]/max_hot_rec_weight) for t in hot_recommendations)
+
+        return recommendations
+
+
 class WeightedSequenceRelevanceMixin(object):
     @timeit
     def _measure_relevance(self):
@@ -208,7 +242,7 @@ class WeightedSequenceRelevanceMixin(object):
         return 1
 
 
-# ensure WSRM._measure_relevance will be called with putting it before KeywordRecommener
+# ensure WSRM._measure_relevance will be called with putting it before KeywordRecommender
 # ref: http://python-history.blogspot.com/2010/06/method-resolution-order.html
 class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommender):
     """This recommender weights browse count by distribution of sequence."""
