@@ -127,7 +127,7 @@ class KeywordRecommender(object):
                 related_keyword_count = sum(self.product_keyword_count[product].values())
 
                 # delegate to sub-classes
-                relevance = self.rm.get_relevance(count, (related_product_number, related_product_count), (related_product_number, related_keyword_count), all_product_number)
+                relevance = self.rm.get_relevance(count, (related_product_number, related_product_count), (related_keyword_number, related_keyword_count), all_product_number)
                 self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
 
     def recommend(self, query):
@@ -167,7 +167,7 @@ class WeightedSequenceRelevanceMixin(object):
                 #avg_sequence = self.dbm.get_value('select avg(sequence) from query_product where product_name = %s AND query_id in (select query_id from keyword_query where keyword = %s)', (product, keyword))
                 avg_sequence = 1
 
-                relevance = self.rm.get_relevance(count, (related_product_number, related_product_count), (related_product_number, related_keyword_count), all_product_number, avg_sequence)
+                relevance = self.rm.get_relevance(count, (related_product_number, related_product_count), (related_keyword_number, related_keyword_count), all_product_number, avg_sequence)
 
                 # sub-class can override sequence_weight
                 relevance *= self.sequence_weight(avg_sequence)
