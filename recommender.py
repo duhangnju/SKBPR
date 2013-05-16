@@ -115,16 +115,19 @@ class KeywordRecommender(object):
     @timeit
     def _measure_relevance(self):
         # calculate keyword-product relevance
-        all_product_count = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
+        all_product_number = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
         for keyword, count in self.keyword_count.iteritems():
             # will be used for statistics
             self.dbm.insert('INSERT INTO keyword (keyword, count) VALUES (%s, %s)', (keyword, count))
-            related_product_count = len(self.keyword_product_count[keyword].keys())
+            related_product_number = len(self.keyword_product_count[keyword].keys())
+            related_product_count = sum(self.keyword_product_count[keyword].values())
 
             for product, count in self.keyword_product_count[keyword].iteritems():
-                related_keyword_count = len(self.product_keyword_count[product].keys())
+                related_keyword_number = len(self.product_keyword_count[product].keys())
+                related_keyword_count = sum(self.product_keyword_count[product].values())
+
                 # delegate to sub-classes
-                relevance = self.rm.get_relevance(keyword, product, count, related_product_count, related_keyword_count, all_product_count)
+                relevance = self.rm.get_relevance(count, (related_product_number, related_product_count), (related_product_number, related_keyword_count), all_product_number)
                 self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
 
     def recommend(self, query):
@@ -150,17 +153,24 @@ class WeightedSequenceRelevanceMixin(object):
     @timeit
     def _measure_relevance(self):
         # calculate keyword-product relevance
-        all_product_count = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
+        all_product_number = self.dbm.get_value('SELECT COUNT(DISTINCT product_name) FROM query_product')
         for keyword, count in self.keyword_count.iteritems():
             self.dbm.insert('INSERT INTO keyword (keyword, count) VALUES (%s, %s)', (keyword, count))
-            related_product_count = len(self.keyword_product_count[keyword].keys())
+            related_product_number = len(self.keyword_product_count[keyword].keys())
+            related_product_count = sum(self.keyword_product_count[keyword].values())
 
             for product, count in self.keyword_product_count[keyword].iteritems():
-                related_keyword_count = len(self.product_keyword_count[product].keys())
+                related_keyword_number = len(self.product_keyword_count[product].keys())
+                related_keyword_count = sum(self.product_keyword_count[product].values())
                 # get average sequence from database
-                avg_sequence = self.dbm.get_value('select avg(sequence) from query_product where product_name = %s AND query_id in (select query_id from keyword_query where keyword = %s)', (product, keyword))
+                # TODO: very inefficient, get a group all average sequences for a keyword at once
+                #avg_sequence = self.dbm.get_value('select avg(sequence) from query_product where product_name = %s AND query_id in (select query_id from keyword_query where keyword = %s)', (product, keyword))
+                avg_sequence = 1
+
+                relevance = self.rm.get_relevance(count, (related_product_number, related_product_count), (related_product_number, related_keyword_count), all_product_number, avg_sequence)
+
                 # sub-class can override sequence_weight
-                relevance = self.sequence_weight(avg_sequence) * self.rm.get_relevance(keyword, product, count, related_product_count, related_keyword_count, all_product_count, avg_sequence)
+                relevance *= self.sequence_weight(avg_sequence)
                 self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
 
     def sequence_weight(self, avg_sequence):
@@ -187,12 +197,20 @@ class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommen
 
 
 class RelevanceMeasure(object):
-    def get_relevance(self, keyword, product, count, related_product_count, related_keyword_count, all_product_count):
+    """Defines the RelevanceMeasure interface."""
+
+    def get_relevance(self, count, related_product_info, related_keyword_info, all_product_number, *args):
+        """
+        @param count number of times the keyword visit the product
+        @param related_product_info the tuple (related_product_number, related_product_count)
+        @param related_keyword_info the tuple (related_keyword_number, related_keyword_count)
+        @param all_product_number number of all products
+        """
         raise NotImplemented
 
 
 class BCMeasure(RelevanceMeasure):
-    def get_relevance(self, keyword, product, count, *ignored):
+    def get_relevance(self, count, *ignored):
         return count
 
     def __str__(self):
@@ -200,8 +218,8 @@ class BCMeasure(RelevanceMeasure):
 
 
 class BCIPFMeasure(RelevanceMeasure):
-    def get_relevance(self, keyword, product, count, related_product_count, related_keyword_count, all_product_count):
-        ipf = math.log(1.0 * all_product_count / related_product_count)
+    def get_relevance(self, count, related_product_info, related_keyword_info, all_product_number, *args):
+        ipf = math.log(1.0 * all_product_number / related_product_info[0])
         return count * ipf
 
     def __str__(self):
