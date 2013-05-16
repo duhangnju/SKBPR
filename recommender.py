@@ -226,6 +226,16 @@ class BCIPFMeasure(RelevanceMeasure):
         return 'BC-IPF'
 
 
+class BFIPFMeasure(RelevanceMeasure):
+    def get_relevance(self, count, related_product_info, related_keyword_info, all_product_number, *args):
+        bf = 1.0 * count / related_keyword_info[1]
+        ipf = math.log(1.0 * all_product_number / related_product_info[0])
+        return bf * ipf
+
+    def __str__(self):
+        return 'BF-IPF'
+
+
 if __name__ == '__main__':
     import config
     from database import DatabaseManager
