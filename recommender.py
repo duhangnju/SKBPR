@@ -176,31 +176,31 @@ class KeywordRecommender(object):
         return self._related_product_cache[keyword]
 
 
-class KeywordRecommenderHottestFallback(KeywordRecommender, HottestRecommender):
+class KeywordRecommenderHottestFallback(KeywordRecommender):
     """A recommender which uses KeywordRecommender's recommendations first,
     but turns to HottestRecommender if its recommendations are not enough."""
 
     def __init__(self, *args):
         """Identical to that of KeywordRecommender"""
-        KeywordRecommender.__init__(self, *args)
-        HottestRecommender.__init__(self, *args)
+        super(KeywordRecommenderHottestFallback, self).__init__(*args)
+        self.hottest_recommender = HottestRecommender(*args)
 
     def __str__(self):
         return 'Keyword Recommender with Hottest Recommender fallback with %s[N=%d]' % (self.rm, self.limit)
 
     def preprocess(self, query_train_table):
-        KeywordRecommender.preprocess(self, query_train_table)
-        HottestRecommender.preprocess(self, query_train_table)
+        super(KeywordRecommenderHottestFallback, self).preprocess(query_train_table)
+        self.hottest_recommender.preprocess(query_train_table)
 
     def recommend(self, query):
-        recommendations = KeywordRecommender.recommend(self, query)
+        recommendations = super(KeywordRecommenderHottestFallback, self).recommend(query)
         num_rec = len(recommendations)
         if num_rec == self.limit:
             return recommendations
 
         # ask HottestRecommender for more
         # note that create list in order not to break HottestRecommender.recommend_list
-        hot_recommendations = HottestRecommender.recommend(self, query)[:self.limit-num_rec]
+        hot_recommendations = self.hottest_recommender.recommend(query)[:self.limit-num_rec]
 
         # ensure hot_recommendations's weight is no greater than any from keyword recommendations
         max_hot_rec_weight = hot_recommendations[0][1]
@@ -252,7 +252,7 @@ class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommen
         self.sequence_dist = {row['sequence']: float(row['ratio']) for row in self.dbm.get_rows('SELECT sequence, COUNT(sequence)/%s ratio FROM query_product GROUP BY sequence', (max_occurrence,))}
 
         # then, call KeywordRecommender's preprocess
-        KeywordRecommender.preprocess(self, query_train_table)
+        super(SequenceKeywordRecommender, self).preprocess(query_train_table)
 
     def get_browse_count(self, sequences):
         """Multiple browses in a session always count 1."""
