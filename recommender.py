@@ -3,8 +3,39 @@ Keyword Recommenders.
 """
 
 import math
+import random
 from utils import timeit
 from collections import defaultdict
+
+
+class RandomRecommender(object):
+    def __init__(self, limit, dbm, *ignored):
+        """
+        @param dbm a DatabaseManager
+        @param limit the (maximal) number of recommended products at a time
+        """
+        self.limit = limit
+        self.dbm = dbm
+        self.all_products = []
+
+    def __str__(self):
+        return 'Random Recommender[N=%d]' % self.limit
+
+    def use_keywords(self):
+        return False
+
+    @timeit
+    def preprocess(self, query_train_table):
+        # retrieve all products at once as there aren't many (< 4000)
+        query = '''SELECT DISTINCT pageinfo FROM visit
+            WHERE pagetype = 'product' AND pageinfo != '' AND pageinfo != 'null' AND userid IN (
+                SELECT user_id FROM %s
+            )''' % query_train_table
+        self.all_products = [(row['pageinfo'], 1.0) for row in self.dbm.get_rows(query)]
+
+    def recommend(self, query):
+        return random.sample(self.all_products, self.limit)
+
 
 class HottestRecommender(object):
     def __init__(self, limit, dbm, *ignored):

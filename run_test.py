@@ -2,6 +2,8 @@ import config
 from tester import Tester
 
 if __name__ == '__main__':
+    print 'Running tests on database [%s]' % config.DB_NAME
+
     dbm = config.DatabaseManager(config.DB_HOST, config.DB_USER, config.DB_PASSWORD, config.DB_NAME)
     try:
         # set up recommender
