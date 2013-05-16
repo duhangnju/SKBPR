@@ -33,6 +33,9 @@ class RandomRecommender(object):
             )''' % query_train_table
         self.all_products = [(row['pageinfo'], 1.0) for row in self.dbm.get_rows(query)]
 
+    def round_statistics(self):
+        pass
+
     def recommend(self, query):
         return random.sample(self.all_products, self.limit)
 
@@ -62,6 +65,9 @@ class HottestRecommender(object):
             self.recommend_list.append((row['pageinfo'], row['count']))
         #print self.recommend_list
 
+    def round_statistics(self):
+        pass
+
     def recommend(self, query):
         return self.recommend_list
 
@@ -87,6 +93,7 @@ class KeywordRecommender(object):
         return True
 
     def preprocess(self, query_train_table):
+        self.query_train_table = query_train_table
         # empty cache so that cache from last round does not interfere with next round
         self._related_product_cache = {}
 
@@ -96,17 +103,17 @@ class KeywordRecommender(object):
         self.dbm.query('TRUNCATE TABLE keyword_product_weight');
 
         # these methods can be overridden by sub-classes
-        self._build_keyword_product_mapping(query_train_table)
+        self._build_keyword_product_mapping()
         self._build_product_keyword_mapping()
         self._measure_relevance()
 
         self.dbm.commit()
 
     @timeit
-    def _build_keyword_product_mapping(self, query_train_table):
+    def _build_keyword_product_mapping(self):
         self.keyword_count = defaultdict(int)
         self.keyword_product_count = defaultdict(lambda: defaultdict(int))
-        for qrow in self.dbm.get_rows('SELECT id, query FROM %s' % query_train_table):
+        for qrow in self.dbm.get_rows('SELECT id, query FROM %s' % self.query_train_table):
             # GROUP_CONCAT returns a comma-separeted string
             products = [(qprow['product_name'], qprow['sequences']) for qprow in self.dbm.get_rows('SELECT product_name, GROUP_CONCAT(sequence) AS sequences FROM query_product WHERE query_id = %s GROUP BY product_name', (qrow['id'],))]
 
@@ -156,6 +163,15 @@ class KeywordRecommender(object):
                 # delegate to sub-classes
                 relevance = self.rm.get_relevance(count, (related_product_number, related_product_count), (related_keyword_number, related_keyword_count), all_product_number)
                 self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
+
+    def round_statistics(self):
+        """Get number of query, keywords, products, keyword-product relations of current round."""
+        n_query = self.dbm.get_value("SELECT COUNT(*) FROM %s" % self.query_train_table)
+        n_keyword = self.dbm.get_value("SELECT COUNT(*) FROM keyword")
+        n_product = self.dbm.get_value("SELECT COUNT(DISTINCT product) FROM keyword_product_weight")
+        n_relation = self.dbm.get_value("SELECT COUNT(*) FROM keyword_product_weight")
+
+        print 'query: %d, keyword: %d, product: %d, relation: %d, A/M: %.2f%%' % (n_query, n_keyword, n_product, n_relation, 100.0*n_relation / (n_keyword*n_product))
 
     def recommend(self, query):
         keywords = self.ws.segment(query)

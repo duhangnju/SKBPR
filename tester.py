@@ -29,9 +29,6 @@ class Tester(object):
 
             # train recommender
             recommender.preprocess('query_train')
-            if recommender.use_keywords():
-                # for recommenders not using keywords, the statistics are meaningless
-                self.round_statistics()
 
             # start test
             for row in self.dbm.get_rows('SELECT id, query from query_test'):
@@ -41,19 +38,12 @@ class Tester(object):
 
             # let evaluate record result of this round
             self.evaluator.round_end()
+
+            recommender.round_statistics()
             _round += 1
 
         # output summary of all results
         self.evaluator.summary()
-
-    def round_statistics(self):
-        """Get number of query, keywords, products, keyword-product relations of current round."""
-        n_query = self.dbm.get_value("SELECT COUNT(*) FROM query_train")
-        n_keyword = self.dbm.get_value("SELECT COUNT(*) FROM keyword")
-        n_product = self.dbm.get_value("SELECT COUNT(DISTINCT product) FROM keyword_product_weight")
-        n_relation = self.dbm.get_value("SELECT COUNT(*) FROM keyword_product_weight")
-
-        print 'query: %d, keyword: %d, product: %d, relation: %d, A/M: %.2f%%' % (n_query, n_keyword, n_product, n_relation, 100.0*n_relation / (n_keyword*n_product))
 
     def get_actual_products(self, query_id):
         return set(row['product_name'] for row in self.dbm.get_rows('SELECT product_name FROM query_product WHERE query_id = %s', (query_id,)))
