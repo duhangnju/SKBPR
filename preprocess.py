@@ -34,17 +34,19 @@ class RawDataPreprocessor(object):
 
         # get all user with non-empty referrer
         # take care! besides NULL, there's 'null'
-        # TODO: get statistics on invalid row rate
+        invalid = 0
         for row in self.dbm.get_rows("SELECT userid, refer FROM user WHERE refer IS NOT NULL AND refer != '' AND refer != 'null'"):
             time_row = self.dbm.get_one_row('SELECT vtime - utime AS diff FROM (SELECT MIN(V.time) AS vtime, u.time AS utime FROM visit V JOIN user U ON V.userid = U.userid WHERE U.userid = %s GROUP BY V.userid) T', (row['userid'],))
             if time_row == None or time_row['diff'] != 0:
                 # data corrupted: first visit's time is inconsistent in user and visit tables
                 # actually we can allow 0 <= diff < THRESHOLD (say 24h), but let't be simple here
+                invalid += 1
                 continue
 
             visit_count = self.dbm.get_value("SELECT COUNT(id) visit_count FROM visit WHERE userid = %s AND pagetype = 'product'", (row['userid'],))
             if visit_count == 0:
                 # the user needs to visit more than one product page to be valid
+                invalid += 1
                 continue
 
             query = self.query_extractor.extract_query(row['refer'], escaped=True)
@@ -53,10 +55,14 @@ class RawDataPreprocessor(object):
                 try:
                     self.dbm.query("INSERT INTO query (user_id, query) VALUES (%s, %s)", (row['userid'], query))
                 except:
+                    invalid += 1
                     # prevent corrupted unicode string
                     print 'Corrupted string', query
 
         self.dbm.commit()
+
+        self.query_count = self.dbm.get_value('select COUNT(*) FROM query')
+        print 'Query table statistics (inserted/discarded): %d/%d (%.2f%%)' % (self.query_count, invalid, 100.0*self.query_count/(self.query_count+invalid))
 
     @timeit
     def __populate_product_table(self):
@@ -64,6 +70,10 @@ class RawDataPreprocessor(object):
         self.dbm.query('TRUNCATE TABLE product');
         self.dbm.query("INSERT INTO product (name) SELECT DISTINCT(pageinfo) FROM visit WHERE pagetype = 'product'")
         self.dbm.commit()
+
+        self.product_count = self.dbm.get_value('select COUNT(*) FROM product')
+        max_count = self.dbm.get_value('select COUNT(*) FROM products')
+        print '\nProduct table statistics (inserted/maximum): %d/%d (%.2f%%)' % (self.product_count, max_count, 100.0*self.product_count/max_count)
 
     @timeit
     def __populate_query_product_table(self):
@@ -83,7 +93,12 @@ class RawDataPreprocessor(object):
                     bought = 2 if order_count > 0 else 0
                     self.dbm.insert("INSERT INTO query_product (query_id, product_name, bought, sequence) VALUES (%s, %s, %s, %s)", (qrow['id'], vrow['pageinfo'], bought, sequence))
                 sequence += 1
+
         self.dbm.commit()
+
+        count = self.dbm.get_value('select COUNT(*) FROM query_product')
+        max_count = self.query_count * self.product_count
+        print '\nQuery-Product table statistics (inserted/maximum): %d/%d (%.2f%%)' % (count, max_count, 100.0*count/max_count)
 
     def get_session_end(self, start_time):
         """Get session end time.
