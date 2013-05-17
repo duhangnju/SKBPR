@@ -267,10 +267,8 @@ class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommen
     @timeit
     def preprocess(self, query_train_table):
         # first, get sequence distribution
-        # TODO: exclude entries from query_test
-        max_occurrence = self.dbm.get_value('SELECT MAX(c) FROM (SELECT sequence, COUNT(sequence) c FROM query_product GROUP BY sequence) T')
-        # TODO: ditto
-        self.sequence_dist = {row['sequence']: float(row['ratio']) for row in self.dbm.get_rows('SELECT sequence, COUNT(sequence)/%s ratio FROM query_product GROUP BY sequence', (max_occurrence,))}
+        max_occurrence = self.dbm.get_value('SELECT MAX(c) FROM (SELECT sequence, COUNT(sequence) c FROM query_product WHERE query_id IN (SELECT id FROM %s) GROUP BY sequence) T' % query_train_table)
+        self.sequence_dist = {row['sequence']: float(row['ratio']) for row in self.dbm.get_rows('SELECT sequence, COUNT(sequence)/%d ratio FROM query_product WHERE query_id IN (SELECT id FROM %s) GROUP BY sequence' % (max_occurrence,query_train_table))}
 
         # then, call KeywordRecommender's preprocess
         super(SequenceKeywordRecommender, self).preprocess(query_train_table)

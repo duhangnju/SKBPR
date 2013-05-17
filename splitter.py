@@ -12,7 +12,7 @@ class KFoldSplitter(object):
     >>> splitter.split('query')
     >>> while splitter.more_rounds():
     >>>     splitter.next_round()
-    >>>     # use query_traina and query_test
+    >>>     # use query_train and query_test
     """
 
     def __init__(self, dbm, k):
