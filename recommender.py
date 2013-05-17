@@ -96,6 +96,7 @@ class KeywordRecommender(object):
         self.query_train_table = query_train_table
         # empty cache so that cache from last round does not interfere with next round
         self._related_product_cache = {}
+        self._not_enough_recs = 0
 
         self.dbm.begin()
         self.dbm.query('TRUNCATE TABLE keyword');
@@ -171,7 +172,7 @@ class KeywordRecommender(object):
         n_product = self.dbm.get_value("SELECT COUNT(DISTINCT product) FROM keyword_product_weight")
         n_relation = self.dbm.get_value("SELECT COUNT(*) FROM keyword_product_weight")
 
-        print 'query: %d, keyword: %d, product: %d, relation: %d, A/M: %.2f%%' % (n_query, n_keyword, n_product, n_relation, 100.0*n_relation / (n_keyword*n_product))
+        print 'Round statistics: query: %d (not enough %d), keyword: %d, product: %d, relation: %d, A/M: %.2f%%' % (n_query, self._not_enough_recs, n_keyword, n_product, n_relation, 100.0*n_relation / (n_keyword*n_product))
 
     def recommend(self, query):
         keywords = self.ws.segment(query)
@@ -184,6 +185,10 @@ class KeywordRecommender(object):
         # convert dict to list for sorting
         product_weight_list = [item for item in product_weight.iteritems()]
         product_weight_list.sort(key=lambda t: t[1], reverse=True)
+
+        if len(product_weight_list) < self.limit:
+            self._not_enough_recs += 1
+
         return product_weight_list[:self.limit]
 
     def __fetch_related_products(self, keyword):
