@@ -85,6 +85,7 @@ class KeywordRecommender(object):
         self.ws = ws
         self.rm = rm
         self._related_product_cache = {}
+        self._not_enough_recs = 0
 
     def __str__(self):
         return 'Keyword Recommender with %s[N=%d]' % (self.rm, self.limit)
