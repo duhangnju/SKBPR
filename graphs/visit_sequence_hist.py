@@ -4,10 +4,12 @@ import config
 import numpy as np
 import matplotlib.pyplot as plt
 
-SEQ_UPPER_BOUND = 150
+# copy to root folder to run this file
+
+SEQ_UPPER_BOUND = 200
 
 if __name__ == '__main__':
-    filename = sys.argv[1] if len(sys.argv) > 1 else 'sequence_hist.pdf'
+    filename = sys.argv[1] if len(sys.argv) > 1 else 'graphs/output/sequence_hist.png'
 
     dbm = config.DatabaseManager(config.DB_HOST, config.DB_USER, config.DB_PASSWORD, config.DB_NAME)
     try:
@@ -21,11 +23,11 @@ if __name__ == '__main__':
         arrays = [np.repeat(t[0], t[1]) for t in seq_occur]
         data = np.hstack(arrays)
 
-        fig = plt.figure(figsize=(19.2, 10.8), dpi=100)
+        fig = plt.figure(figsize=(10, 6), dpi=72)
         plt.hist(data, bins=sequence_range, facecolor='g', alpha=0.75)
-        plt.xlabel('$Sequence$')
-        plt.ylabel('$Occurrence$')
-        plt.title('$Sequence Occurrence Histogram$')
+        plt.xlabel('Sequence')
+        plt.ylabel('Occurrence')
+        plt.title('Sequence Occurrence Graph')
         plt.axis([0, x_max, 0, y_max])
         plt.grid(True)
 
