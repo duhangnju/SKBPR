@@ -38,7 +38,7 @@ def output_dataset(fig, title, labels, pos, dataset, axis):
     for method, data in dataset.iteritems():
         marker = marker_settings[method]
         # plot data with lines
-        ax.plot(Ns, data, marker)
+        ax.plot(Ns, data, marker, label=method)
         for n, d in zip(Ns, data):
             # show precise number
             ax.text(n, d, '%.4f' % d)
@@ -47,6 +47,7 @@ def output_dataset(fig, title, labels, pos, dataset, axis):
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.title(title)
+    plt.legend()
     plt.axis(axis)# doesn't care about y-axis range
     plt.grid(True)
 
@@ -63,13 +64,13 @@ def output_measure_graph(measure, axis, datasets, filename):
     fig.savefig(filename)
 
 if __name__ == '__main__':
-    precision_axis = [0, 25, 0.010, 0.060]
+    precision_axis = [0, 25, 0.010, 0.070]
     precision_datasets = [
         ('Small', small_dataset_precisions),
         ('Large', large_dataset_precisions),
     ]
     output_measure_graph('Precision', precision_axis, precision_datasets, 'output/fallback_precision.png')
-    recall_axis = [0, 25, 0.04, 0.30]
+    recall_axis = [0, 25, 0.04, 0.35]
     recall_datasets = [
         ('Small', small_dataset_recalls),
         ('Large', large_dataset_recalls),
