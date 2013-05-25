@@ -53,12 +53,7 @@
             <div class="non-personalized">
                 <h2>Most Popular:</h2>
                 <ul>
-                % for product, url in products:
-                    <li>
-                        <img src="{{ url }} " alt="" />
-                        <p>{{ product }}</p>
-                    </li>
-                % end
+                % include recommendations products=products
                 </ul>
             </div>
             <div class="personalized">
