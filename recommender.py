@@ -232,6 +232,17 @@ class KeywordRecommenderHottestFallback(KeywordRecommender):
         return recommendations
 
 
+class LinearSequenceKeywordRecommender(KeywordRecommender):
+    def _heuristic_weight(self, sequence):
+        return -math.log(sequence+1, 2)/8.0 + 1.125
+
+    def get_browse_count(self, sequences):
+        return sum(self._heuristic_weight(int(seq)) for seq in sequences.split(','))
+
+    def __str__(self):
+        return 'Linear Sequenced Keyword Recommender with %s[N=%d]' % (self.rm, self.limit)
+
+
 class WeightedSequenceRelevanceMixin(object):
     @timeit
     def _measure_relevance(self):
@@ -253,7 +264,7 @@ class WeightedSequenceRelevanceMixin(object):
                 relevance = self.rm.get_relevance(count, (related_product_number, related_product_count), (related_keyword_number, related_keyword_count), all_product_number, avg_sequence)
 
                 # sub-class can override sequence_weight
-                relevance *= self.sequence_weight(avg_sequence)
+                # relevance *= self.sequence_weight(avg_sequence)
                 self.dbm.insert('INSERT INTO keyword_product_weight (keyword, product, weight) VALUES (%s, %s, %s)', (keyword, product, relevance))
 
     def sequence_weight(self, avg_sequence):
@@ -262,7 +273,7 @@ class WeightedSequenceRelevanceMixin(object):
 
 # ensure WSRM._measure_relevance will be called with putting it before KeywordRecommender
 # ref: http://python-history.blogspot.com/2010/06/method-resolution-order.html
-class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommender):
+class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, LinearSequenceKeywordRecommender):
     """This recommender weights browse count by distribution of sequence."""
 
     @timeit
@@ -270,17 +281,19 @@ class SequenceKeywordRecommender(WeightedSequenceRelevanceMixin, KeywordRecommen
         # first, get sequence distribution
         max_occurrence = self.dbm.get_value('SELECT MAX(c) FROM (SELECT sequence, COUNT(sequence) c FROM query_product WHERE query_id IN (SELECT id FROM %s) GROUP BY sequence) T' % query_train_table)
         self.sequence_dist = {row['sequence']: float(row['ratio']) for row in self.dbm.get_rows('SELECT sequence, COUNT(sequence)/%d ratio FROM query_product WHERE query_id IN (SELECT id FROM %s) GROUP BY sequence' % (max_occurrence,query_train_table))}
+        self.pivot_seq = max(self.sequence_dist.iteritems(), key=lambda t:t[1])[0]
 
         # then, call KeywordRecommender's preprocess
         super(SequenceKeywordRecommender, self).preprocess(query_train_table)
 
-    def get_browse_count(self, sequences):
-        """Multiple browses in a session always count 1."""
-        return sum((self.sequence_dist[int(seq)] for seq in sequences.split(',')))
+    def _heuristic_weight(self, sequence):
+        weight = self.sequence_dist[sequence]
+        if self.pivot_seq-sequence < 0:
+            return weight
+        return 1 + weight
 
     def __str__(self):
         return 'Sequenced Keyword Recommender with %s[N=%d]' % (self.rm, self.limit)
-
 
 class RelevanceMeasure(object):
     """Defines the RelevanceMeasure interface."""

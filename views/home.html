@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>SKBPR Demo</title>
+    <link href="/static/home.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="query-pane">
+        <div class="toggler">#</div>
+        <h2>Try queries:</h2>
+        <ul>
+            <li><a href="" class="clear-query">Clear Query</a></li>
+        % for query in queries:
+            <li><a class="query-trigger" href="#">{{ query }}</a></li>
+        % end
+        </ul>
+    </div>
+
+    <section role="main" id="main">
+        <header>
+            <h1 id="logo">
+                <span class="part-1">Glasses</span><span class="part-2">Shop</span>
+            </h1>
+            <ul id="menu">
+                <li>Men's Glasses</li>
+                <li>Women's Glasses</li>
+                <li>Designer</li>
+                <li>Sunglasses</li>
+                <li>Try On</li>
+                <li>Help</li>
+            </ul>
+        </header>
+
+        <div id="promotion">
+            <img src="/static/images/notice.jpg" alt="" class="left" />
+            <img src="/static/images/monthly_deal.jpg" alt="" class="upper-right" />
+            <img src="/static/images/weekly_deal.jpg" alt="" class="upper-left" />
+            <div class="clearfix"></div>
+            <div class="brands">
+                <img src="/static/images/brand1.jpg" alt="" />
+                <img src="/static/images/brand2.jpg" alt="" />
+                <img src="/static/images/brand3.jpg" alt="" />
+                <img src="/static/images/brand4.jpg" alt="" />
+                <img src="/static/images/brand5.jpg" alt="" />
+                <img src="/static/images/brand6.jpg" alt="" />
+                <img src="/static/images/brand7.jpg" alt="" />
+                <img src="/static/images/brand8.jpg" alt="" />
+            </div>
+        </div>
+
+        <div id="suggestions">
+            <div class="non-personalized">
+                <h2>Most Popular:</h2>
+                <ul>
+                % for product, url in products:
+                    <li>
+                        <img src="{{ url }} " alt="" />
+                        <p>{{ product }}</p>
+                    </li>
+                % end
+                </ul>
+            </div>
+            <div class="personalized">
+                <h2>Recommendations for You:</h2>
+                <ul>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script src="/static/jquery-2.0.1.min.js"></script>
+    <script src="/static/home.js"></script>
+</body>
+</html>
+
