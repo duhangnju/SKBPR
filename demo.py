@@ -28,10 +28,7 @@ def home():
         group = random.randint(1, 10)
         query = 'SELECT query FROM query WHERE group_id = %d ORDER BY RAND() LIMIT 10' % group
         queries = [row['query'] for row in dbm.get_rows(query)]
-
-        # source hot_cache.sql to make things go smoothly
-        hot_product_query = 'SELECT product FROM hot_cache ORDER BY weight DESC LIMIT 5'
-        products = transfrom_results(row['product'] for row in dbm.get_rows(hot_product_query))
+        products = transfrom_results(get_hot_products(dbm))
 
     if not queries:
         print 'No quries selected', group
@@ -47,12 +44,24 @@ def update_suggestions():
     query = request.POST.query
     with get_dbm() as dbm:
         recommender = KeywordRecommender(config.N, dbm, config.WordSegmenter(), None)
-        products = transfrom_results(rec[0] for rec in recommender.recommend(query))
+        products = [rec[0] for rec in recommender.recommend(query)]
+
+        # make sure sufficient number of products is recommended
+        rec_num = len(products)
+        if rec_num < config.N:
+            products.extend(get_hot_products(dbm)[:config.N-rec_num])
+
+        products = transfrom_results(products)
     return {'products': products}
 
+def get_hot_products(dbm):
+    # source hot_cache.sql to make things go smoothly
+    hot_product_query = 'SELECT product FROM hot_cache ORDER BY weight DESC LIMIT %d' % config.N
+    products = [row['product'] for row in dbm.get_rows(hot_product_query)]
+    return products
+
 def get_image_url(p):
-    # we only have 5 images...
-    i = abs(p.__hash__()) % 5 + 1
+    i = abs(p.__hash__()) % 10 + 1
     return '/static/images/glasses%d.jpg' % i
 
 def transfrom_results(products):
