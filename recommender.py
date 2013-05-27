@@ -20,17 +20,20 @@ class NonStatisticalMixin(object):
 
 
 class RandomRecommender(NonStatisticalMixin):
-    def __init__(self, limit, dbm, *ignored):
+    def __init__(self, dbm, *ignored):
         """
         @param dbm a DatabaseManager
         @param limit the (maximal) number of recommended products at a time
         """
-        self.limit = limit
+        self.limit = 0
         self.dbm = dbm
         self.all_products = []
 
     def __str__(self):
         return 'Random Recommender[N=%d]' % self.limit
+
+    def set_limit(self, limit):
+        self.limit = limit
 
     @timeit
     def preprocess(self, query_train_table):
@@ -46,17 +49,20 @@ class RandomRecommender(NonStatisticalMixin):
 
 
 class HottestRecommender(NonStatisticalMixin):
-    def __init__(self, limit, dbm, *ignored):
+    def __init__(self, dbm, *ignored):
         """
         @param dbm a DatabaseManager
         @param limit the (maximal) number of recommended products at a time
         """
-        self.limit = limit
+        self.limit = 0
         self.dbm = dbm
         self.recommend_list = []
 
     def __str__(self):
         return 'Hottest Recommender[N=%d]' % self.limit
+
+    def set_limit(self, limit):
+        self.limit = limit
 
     @timeit
     def preprocess(self, query_train_table):
@@ -72,14 +78,14 @@ class HottestRecommender(NonStatisticalMixin):
 
 
 class KeywordRecommender(object):
-    def __init__(self, limit, dbm, ws, rm):
+    def __init__(self, dbm, ws, rm):
         """
         Make sure to source rec_tables.sql before using this class.
         @param dbm a DatabaseManager
         @param ws a WordSegmenter
         @param rm a RelevanceMeasure
         """
-        self.limit = limit
+        self.limit = 0
         self.dbm = dbm
         self.ws = ws
         self.rm = rm
@@ -89,6 +95,9 @@ class KeywordRecommender(object):
         self._related_product_cache = {}
         self._not_enough_recs = 0
         self._round_results = []
+
+    def set_limit(self, limit):
+        self.limit = limit
 
     def __str__(self):
         return 'Keyword Recommender with %s[N=%d]' % (self.rm, self.limit)

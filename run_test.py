@@ -8,12 +8,12 @@ if __name__ == '__main__':
     try:
         # set up recommender
         word_segmenter = config.WordSegmenter()
-        recommenders = [R(config.N, dbm, word_segmenter, M()) for R, M in config.Recommenders]
+        recommenders = [R(dbm, word_segmenter, M()) for R, M in config.Recommenders]
 
         # set up tester
         splitter = config.Splitter(dbm, config.K)
         evaluator = config.Evaluator()
-        tester = Tester(dbm, config.REPEAT, recommenders, splitter, evaluator)
+        tester = Tester(config.N, config.REPEAT, dbm, recommenders, splitter, evaluator)
 
         # fire!
         tester.run()

@@ -4,29 +4,37 @@ Orchestrate recommender/splitter/evaluators to run a SKBPR test.
 import sys
 
 class Tester(object):
-    def __init__(self, dbm, repeat, recommenders, splitter, evaluator):
-        self.dbm = dbm
+    def __init__(self, Ns, repeat, dbm, recommenders, splitter, evaluator):
+        self.Ns = Ns
         self.repeat = repeat
+        self.dbm = dbm
         self.recommenders = recommenders
         self.splitter = splitter
         self.evaluator = evaluator
 
     def run(self):
-        self.evaluator.experiment_reset()
-
-        for exp_no in range(1, self.repeat+1):
-            print '==============================Experiment %3d==============================' % exp_no
-
-            # split only once to ensure the same for all recommenders
-            self.splitter.split('query')
+        for N in self.Ns:
+            print
+            print '///////////////////////////////// N = %2d /////////////////////////////////' % N
+            print 'REPEAT = %d' % self.repeat
             for recommender in self.recommenders:
-                self.evaluator.reset()
-                self.splitter.reset()
-                self.__run(recommender)
+                recommender.set_limit(N)
 
-            print '------------------------------Experiment End------------------------------\n'
+            self.evaluator.experiment_reset()
 
-        self.evaluator.grand_summary()
+            for exp_no in range(1, self.repeat+1):
+                print '==============================Experiment %3d==============================' % exp_no
+
+                # split only once to ensure the same for all recommenders
+                self.splitter.split('query')
+                for recommender in self.recommenders:
+                    self.evaluator.reset()
+                    self.splitter.reset()
+                    self.__run(recommender)
+
+                print '------------------------------Experiment End------------------------------\n'
+
+            self.evaluator.grand_summary()
 
     def __run(self, recommender):
         print 'Running %s ...' % recommender
