@@ -232,12 +232,23 @@ class KeywordRecommenderHottestFallback(KeywordRecommender):
         return recommendations
 
 
+from operator import mul
+def product(numbers):
+    return reduce(mul, numbers)
+
 class LinearSequenceKeywordRecommender(KeywordRecommender):
+    """A tentative method using heuristic information of sequence distribution."""
+
     def _heuristic_weight(self, sequence):
-        return -math.log(sequence+1, 2)/8.0 + 1.125
+        #return -math.log(abs(sequence-26)+1, 2)/8.0 + 1.125
+        return -math.log(abs(sequence-3)+1, 2)/8.0 + 1.125
 
     def get_browse_count(self, sequences):
-        return sum(self._heuristic_weight(int(seq)) for seq in sequences.split(','))
+        seqs = sequences.split(',')
+        #return sum(self._heuristic_weight(int(seq)) for seq in seqs)
+        #return sum(self._heuristic_weight(int(seq)) for seq in seqs) * math.log(len(seqs))
+        return product(self._heuristic_weight(int(seq)) for seq in seqs) * len(seqs)
+        #return sum(self._heuristic_weight(int(seq)) for seq in seqs) * len(seqs)
 
     def __str__(self):
         return 'Linear Sequenced Keyword Recommender with %s[N=%d]' % (self.rm, self.limit)
