@@ -3,9 +3,13 @@ Utilities.
 """
 
 import time
+import config
 
 # from: http://www.andreas-jung.com/contents/a-python-decorator-for-measuring-the-execution-time-of-methods
 def timeit(method):
+    if not config.debug:
+        return method
+
     def timed(*args, **kw):
         ts = time.time()
         result = method(*args, **kw)

@@ -13,7 +13,7 @@ if __name__ == '__main__':
         # set up tester
         splitter = config.Splitter(dbm, config.K)
         evaluator = config.Evaluator()
-        tester = Tester(dbm, recommenders, splitter, evaluator)
+        tester = Tester(dbm, config.REPEAT, recommenders, splitter, evaluator)
 
         # fire!
         tester.run()

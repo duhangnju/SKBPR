@@ -3,12 +3,23 @@ Keyword Recommenders.
 """
 
 import math
+import config
 import random
 from utils import timeit
 from collections import defaultdict
 
+class NonStatisticalMixin(object):
+    def reset(self):
+        pass
 
-class RandomRecommender(object):
+    def round_statistics(self):
+        pass
+
+    def experiment_statistics(self):
+        pass
+
+
+class RandomRecommender(NonStatisticalMixin):
     def __init__(self, limit, dbm, *ignored):
         """
         @param dbm a DatabaseManager
@@ -21,9 +32,6 @@ class RandomRecommender(object):
     def __str__(self):
         return 'Random Recommender[N=%d]' % self.limit
 
-    def use_keywords(self):
-        return False
-
     @timeit
     def preprocess(self, query_train_table):
         # retrieve all products at once as there aren't many (< 4000)
@@ -33,14 +41,11 @@ class RandomRecommender(object):
             )''' % query_train_table
         self.all_products = [(row['pageinfo'], 1.0) for row in self.dbm.get_rows(query)]
 
-    def round_statistics(self):
-        pass
-
     def recommend(self, query):
         return random.sample(self.all_products, self.limit)
 
 
-class HottestRecommender(object):
+class HottestRecommender(NonStatisticalMixin):
     def __init__(self, limit, dbm, *ignored):
         """
         @param dbm a DatabaseManager
@@ -53,9 +58,6 @@ class HottestRecommender(object):
     def __str__(self):
         return 'Hottest Recommender[N=%d]' % self.limit
 
-    def use_keywords(self):
-        return False
-
     @timeit
     def preprocess(self, query_train_table):
         for row in self.dbm.get_rows('''SELECT pageinfo, COUNT(id) count FROM visit
@@ -64,9 +66,6 @@ class HottestRecommender(object):
             ) GROUP BY pageinfo ORDER BY count DESC LIMIT %d''' % (query_train_table, self.limit)):
             self.recommend_list.append((row['pageinfo'], row['count']))
         #print self.recommend_list
-
-    def round_statistics(self):
-        pass
 
     def recommend(self, query):
         return self.recommend_list
@@ -84,14 +83,15 @@ class KeywordRecommender(object):
         self.dbm = dbm
         self.ws = ws
         self.rm = rm
+        self.reset()
+
+    def reset(self):
         self._related_product_cache = {}
         self._not_enough_recs = 0
+        self._round_results = []
 
     def __str__(self):
         return 'Keyword Recommender with %s[N=%d]' % (self.rm, self.limit)
-
-    def use_keywords(self):
-        return True
 
     def preprocess(self, query_train_table):
         self.query_train_table = query_train_table
@@ -173,7 +173,21 @@ class KeywordRecommender(object):
         n_product = self.dbm.get_value("SELECT COUNT(DISTINCT product) FROM keyword_product_weight")
         n_relation = self.dbm.get_value("SELECT COUNT(*) FROM keyword_product_weight")
 
-        print 'Round statistics: query: %d (not enough %d), keyword: %d, product: %d, relation: %d, A/M: %.2f%%' % (n_query, self._not_enough_recs, n_keyword, n_product, n_relation, 100.0*n_relation / (n_keyword*n_product))
+        self._round_results.append((n_query, self._not_enough_recs, n_keyword, n_product, n_relation))
+
+        if config.verbose:
+            print 'Round statistics: query: %d (not enough %d), keyword: %d, product: %d, relation: %d, A/M: %.2f%%' % (n_query, self._not_enough_recs, n_keyword, n_product, n_relation, 100.0*n_relation / (n_keyword*n_product))
+
+    def experiment_statistics(self):
+        # stands for: query, not-enough, keyword, product, relation, a/m
+        sums = [0, 0, 0, 0, 0, 0]
+        for data in self._round_results:
+            for i in range(5):
+                sums[i] += data[i]
+            sums[5] += 100.0*data[4]/(data[2]*data[3])
+        n = float(len(self._round_results))
+        n_query, not_enough_recs, n_keyword, n_product, n_relation, am = [s/n for s in sums]
+        print 'Experiment statistics:\nquery: %.2f (not enough %.2f), keyword: %.2f, product: %.2f, relation: %.2f, A/M: %.2f%%' % (n_query, not_enough_recs, n_keyword, n_product, n_relation, am)
 
     def recommend(self, query):
         keywords = self.ws.segment(query)
