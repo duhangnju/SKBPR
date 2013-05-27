@@ -233,6 +233,10 @@ class KeywordRecommenderHottestFallback(KeywordRecommender):
     def __str__(self):
         return 'Keyword Recommender with Hottest Recommender fallback with %s[N=%d]' % (self.rm, self.limit)
 
+    def set_limit(self, limit):
+        self.hottest_recommender.set_limit(limit)
+        super(KeywordRecommenderHottestFallback, self).set_limit(limit)
+
     def preprocess(self, query_train_table):
         super(KeywordRecommenderHottestFallback, self).preprocess(query_train_table)
         self.hottest_recommender.preprocess(query_train_table)
