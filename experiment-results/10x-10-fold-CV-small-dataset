@@ -1,0 +1,1517 @@
+Running tests on database [glassesshop_2012]
+
+///////////////////////////////// N =  5 /////////////////////////////////
+REPEAT = 10
+==============================Experiment   1==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0374 | recall: 0.1044
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.00), keyword: 774.80, product: 517.40, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0557 | recall: 0.1106
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.00), keyword: 774.80, product: 517.40, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0574 | recall: 0.1158
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.00), keyword: 774.80, product: 517.40, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0501 | recall: 0.1194
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.00), keyword: 774.80, product: 517.40, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0535 | recall: 0.1097
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.00), keyword: 774.80, product: 517.40, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0553 | recall: 0.1157
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   2==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0357 | recall: 0.1236
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.70), keyword: 774.20, product: 517.20, relation: 9171.30, A/M: 2.29%
+>Average: precision: 0.0547 | recall: 0.1103
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.70), keyword: 774.20, product: 517.20, relation: 9171.30, A/M: 2.29%
+>Average: precision: 0.0568 | recall: 0.1162
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.70), keyword: 774.20, product: 517.20, relation: 9171.30, A/M: 2.29%
+>Average: precision: 0.0502 | recall: 0.1196
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.70), keyword: 774.20, product: 517.20, relation: 9171.30, A/M: 2.29%
+>Average: precision: 0.0530 | recall: 0.1095
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.70), keyword: 774.20, product: 517.20, relation: 9171.30, A/M: 2.29%
+>Average: precision: 0.0544 | recall: 0.1154
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   3==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0358 | recall: 0.1286
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.40), keyword: 774.60, product: 517.40, relation: 9173.60, A/M: 2.29%
+>Average: precision: 0.0550 | recall: 0.1102
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.40), keyword: 774.60, product: 517.40, relation: 9173.60, A/M: 2.29%
+>Average: precision: 0.0572 | recall: 0.1154
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.40), keyword: 774.60, product: 517.40, relation: 9173.60, A/M: 2.29%
+>Average: precision: 0.0505 | recall: 0.1193
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.40), keyword: 774.60, product: 517.40, relation: 9173.60, A/M: 2.29%
+>Average: precision: 0.0525 | recall: 0.1098
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.40), keyword: 774.60, product: 517.40, relation: 9173.60, A/M: 2.29%
+>Average: precision: 0.0537 | recall: 0.1148
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   4==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0359 | recall: 0.1287
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 773.90, product: 517.40, relation: 9174.70, A/M: 2.29%
+>Average: precision: 0.0537 | recall: 0.1080
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 773.90, product: 517.40, relation: 9174.70, A/M: 2.29%
+>Average: precision: 0.0556 | recall: 0.1132
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 773.90, product: 517.40, relation: 9174.70, A/M: 2.29%
+>Average: precision: 0.0491 | recall: 0.1166
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 773.90, product: 517.40, relation: 9174.70, A/M: 2.29%
+>Average: precision: 0.0522 | recall: 0.1081
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 773.90, product: 517.40, relation: 9174.70, A/M: 2.29%
+>Average: precision: 0.0535 | recall: 0.1145
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   5==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0358 | recall: 0.1284
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.90, product: 517.60, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0553 | recall: 0.1123
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.90, product: 517.60, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0570 | recall: 0.1155
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.90, product: 517.60, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0500 | recall: 0.1189
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.90, product: 517.60, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0530 | recall: 0.1103
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.90, product: 517.60, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0546 | recall: 0.1164
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   6==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0358 | recall: 0.1287
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.80), keyword: 774.10, product: 517.30, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0565 | recall: 0.1130
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.80), keyword: 774.10, product: 517.30, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0583 | recall: 0.1174
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.80), keyword: 774.10, product: 517.30, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0508 | recall: 0.1209
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.80), keyword: 774.10, product: 517.30, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0541 | recall: 0.1117
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.80), keyword: 774.10, product: 517.30, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0559 | recall: 0.1173
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   7==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0359 | recall: 0.1286
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.30), keyword: 775.00, product: 517.40, relation: 9174.90, A/M: 2.29%
+>Average: precision: 0.0556 | recall: 0.1109
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.30), keyword: 775.00, product: 517.40, relation: 9174.90, A/M: 2.29%
+>Average: precision: 0.0579 | recall: 0.1163
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.30), keyword: 775.00, product: 517.40, relation: 9174.90, A/M: 2.29%
+>Average: precision: 0.0506 | recall: 0.1199
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.30), keyword: 775.00, product: 517.40, relation: 9174.90, A/M: 2.29%
+>Average: precision: 0.0541 | recall: 0.1118
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.30), keyword: 775.00, product: 517.40, relation: 9174.90, A/M: 2.29%
+>Average: precision: 0.0559 | recall: 0.1192
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   8==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0358 | recall: 0.1287
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.50), keyword: 774.80, product: 517.20, relation: 9174.00, A/M: 2.29%
+>Average: precision: 0.0561 | recall: 0.1124
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.50), keyword: 774.80, product: 517.20, relation: 9174.00, A/M: 2.29%
+>Average: precision: 0.0582 | recall: 0.1173
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.50), keyword: 774.80, product: 517.20, relation: 9174.00, A/M: 2.29%
+>Average: precision: 0.0508 | recall: 0.1211
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.50), keyword: 774.80, product: 517.20, relation: 9174.00, A/M: 2.29%
+>Average: precision: 0.0546 | recall: 0.1133
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.50), keyword: 774.80, product: 517.20, relation: 9174.00, A/M: 2.29%
+>Average: precision: 0.0559 | recall: 0.1196
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   9==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0357 | recall: 0.1282
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 775.00, product: 517.40, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0542 | recall: 0.1065
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 775.00, product: 517.40, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0563 | recall: 0.1132
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 775.00, product: 517.40, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0489 | recall: 0.1168
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 775.00, product: 517.40, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0526 | recall: 0.1090
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.60), keyword: 775.00, product: 517.40, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0541 | recall: 0.1147
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment  10==============================
+Running Hottest Recommender[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0359 | recall: 0.1285
+
+Running Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.60, product: 517.20, relation: 9169.40, A/M: 2.29%
+>Average: precision: 0.0553 | recall: 0.1112
+
+Running Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.60, product: 517.20, relation: 9169.40, A/M: 2.29%
+>Average: precision: 0.0573 | recall: 0.1163
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.60, product: 517.20, relation: 9169.40, A/M: 2.29%
+>Average: precision: 0.0505 | recall: 0.1198
+
+Running Linear Sequenced Keyword Recommender with BC[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.60, product: 517.20, relation: 9169.40, A/M: 2.29%
+>Average: precision: 0.0535 | recall: 0.1120
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=5] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 34.20), keyword: 774.60, product: 517.20, relation: 9169.40, A/M: 2.29%
+>Average: precision: 0.0554 | recall: 0.1180
+
+------------------------------Experiment End------------------------------
+
+Precision: 0.0572 | Recall 0.1157 -- Keyword Recommender with BC-IPF[N=5]
+Precision: 0.0552 | Recall 0.1105 -- Keyword Recommender with BC[N=5]
+Precision: 0.0549 | Recall 0.1166 -- Linear Sequenced Keyword Recommender with BC-IPF[N=5]
+Precision: 0.0533 | Recall 0.1105 -- Linear Sequenced Keyword Recommender with BC[N=5]
+Precision: 0.0501 | Recall 0.1192 -- Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=5]
+Precision: 0.0360 | Recall 0.1256 -- Hottest Recommender[N=5]
+
+///////////////////////////////// N = 10 /////////////////////////////////
+REPEAT = 10
+==============================Experiment   1==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1554
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.30, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0486 | recall: 0.1668
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.30, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0506 | recall: 0.1801
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.30, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0431 | recall: 0.1849
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.30, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0483 | recall: 0.1699
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.30, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0505 | recall: 0.1836
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   2==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1569
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 775.10, product: 517.60, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0490 | recall: 0.1665
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 775.10, product: 517.60, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0507 | recall: 0.1786
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 775.10, product: 517.60, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0427 | recall: 0.1832
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 775.10, product: 517.60, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0490 | recall: 0.1695
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 775.10, product: 517.60, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0508 | recall: 0.1808
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   3==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1568
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.70), keyword: 775.20, product: 517.30, relation: 9173.90, A/M: 2.29%
+>Average: precision: 0.0486 | recall: 0.1664
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.70), keyword: 775.20, product: 517.30, relation: 9173.90, A/M: 2.29%
+>Average: precision: 0.0504 | recall: 0.1799
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.70), keyword: 775.20, product: 517.30, relation: 9173.90, A/M: 2.29%
+>Average: precision: 0.0427 | recall: 0.1844
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.70), keyword: 775.20, product: 517.30, relation: 9173.90, A/M: 2.29%
+>Average: precision: 0.0488 | recall: 0.1709
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.70), keyword: 775.20, product: 517.30, relation: 9173.90, A/M: 2.29%
+>Average: precision: 0.0507 | recall: 0.1829
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   4==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1570
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 774.70, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0488 | recall: 0.1678
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 774.70, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0506 | recall: 0.1794
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 774.70, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0429 | recall: 0.1842
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 774.70, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0482 | recall: 0.1687
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.80), keyword: 774.70, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0503 | recall: 0.1820
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   5==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1569
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.60, product: 517.30, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0481 | recall: 0.1656
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.60, product: 517.30, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0502 | recall: 0.1794
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.60, product: 517.30, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0428 | recall: 0.1846
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.60, product: 517.30, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0485 | recall: 0.1711
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.40), keyword: 774.60, product: 517.30, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0509 | recall: 0.1845
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   6==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0343 | recall: 0.1568
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.30), keyword: 774.90, product: 517.40, relation: 9173.80, A/M: 2.29%
+>Average: precision: 0.0480 | recall: 0.1669
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.30), keyword: 774.90, product: 517.40, relation: 9173.80, A/M: 2.29%
+>Average: precision: 0.0497 | recall: 0.1786
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.30), keyword: 774.90, product: 517.40, relation: 9173.80, A/M: 2.29%
+>Average: precision: 0.0424 | recall: 0.1833
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.30), keyword: 774.90, product: 517.40, relation: 9173.80, A/M: 2.29%
+>Average: precision: 0.0477 | recall: 0.1680
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.30), keyword: 774.90, product: 517.40, relation: 9173.80, A/M: 2.29%
+>Average: precision: 0.0500 | recall: 0.1815
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   7==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1570
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.00, product: 517.20, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0488 | recall: 0.1648
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.00, product: 517.20, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0507 | recall: 0.1781
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.00, product: 517.20, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0424 | recall: 0.1829
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.00, product: 517.20, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0488 | recall: 0.1689
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.00, product: 517.20, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0509 | recall: 0.1817
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   8==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1566
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.30, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0485 | recall: 0.1663
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.30, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0503 | recall: 0.1791
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.30, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0426 | recall: 0.1839
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.30, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0485 | recall: 0.1709
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.10), keyword: 775.30, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0499 | recall: 0.1799
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   9==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1567
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.60), keyword: 774.70, product: 517.40, relation: 9171.80, A/M: 2.29%
+>Average: precision: 0.0481 | recall: 0.1651
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.60), keyword: 774.70, product: 517.40, relation: 9171.80, A/M: 2.29%
+>Average: precision: 0.0500 | recall: 0.1791
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.60), keyword: 774.70, product: 517.40, relation: 9171.80, A/M: 2.29%
+>Average: precision: 0.0424 | recall: 0.1838
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.60), keyword: 774.70, product: 517.40, relation: 9171.80, A/M: 2.29%
+>Average: precision: 0.0477 | recall: 0.1680
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 40.60), keyword: 774.70, product: 517.40, relation: 9171.80, A/M: 2.29%
+>Average: precision: 0.0498 | recall: 0.1802
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment  10==============================
+Running Hottest Recommender[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0342 | recall: 0.1570
+
+Running Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.50), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0475 | recall: 0.1675
+
+Running Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.50), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0492 | recall: 0.1776
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.50), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0424 | recall: 0.1824
+
+Running Linear Sequenced Keyword Recommender with BC[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.50), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0475 | recall: 0.1692
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=10] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 41.50), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0493 | recall: 0.1804
+
+------------------------------Experiment End------------------------------
+
+Precision: 0.0503 | Recall 0.1817 -- Linear Sequenced Keyword Recommender with BC-IPF[N=10]
+Precision: 0.0502 | Recall 0.1790 -- Keyword Recommender with BC-IPF[N=10]
+Precision: 0.0484 | Recall 0.1664 -- Keyword Recommender with BC[N=10]
+Precision: 0.0483 | Recall 0.1695 -- Linear Sequenced Keyword Recommender with BC[N=10]
+Precision: 0.0426 | Recall 0.1838 -- Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=10]
+Precision: 0.0342 | Recall 0.1567 -- Hottest Recommender[N=10]
+
+///////////////////////////////// N = 15 /////////////////////////////////
+REPEAT = 10
+==============================Experiment   1==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0303 | recall: 0.1981
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 773.90, product: 517.30, relation: 9174.30, A/M: 2.29%
+>Average: precision: 0.0431 | recall: 0.2099
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 773.90, product: 517.30, relation: 9174.30, A/M: 2.29%
+>Average: precision: 0.0450 | recall: 0.2265
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 773.90, product: 517.30, relation: 9174.30, A/M: 2.29%
+>Average: precision: 0.0387 | recall: 0.2338
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 773.90, product: 517.30, relation: 9174.30, A/M: 2.29%
+>Average: precision: 0.0435 | recall: 0.2154
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 773.90, product: 517.30, relation: 9174.30, A/M: 2.29%
+>Average: precision: 0.0448 | recall: 0.2274
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   2==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0298 | recall: 0.2059
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 47.00), keyword: 774.00, product: 517.10, relation: 9171.10, A/M: 2.29%
+>Average: precision: 0.0432 | recall: 0.2081
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 47.00), keyword: 774.00, product: 517.10, relation: 9171.10, A/M: 2.29%
+>Average: precision: 0.0451 | recall: 0.2254
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 47.00), keyword: 774.00, product: 517.10, relation: 9171.10, A/M: 2.29%
+>Average: precision: 0.0386 | recall: 0.2322
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 47.00), keyword: 774.00, product: 517.10, relation: 9171.10, A/M: 2.29%
+>Average: precision: 0.0438 | recall: 0.2154
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 47.00), keyword: 774.00, product: 517.10, relation: 9171.10, A/M: 2.29%
+>Average: precision: 0.0450 | recall: 0.2276
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   3==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0296 | recall: 0.2140
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.40), keyword: 773.80, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0437 | recall: 0.2107
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.40), keyword: 773.80, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0456 | recall: 0.2274
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.40), keyword: 773.80, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0390 | recall: 0.2346
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.40), keyword: 773.80, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0440 | recall: 0.2168
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.40), keyword: 773.80, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0454 | recall: 0.2300
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   4==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0296 | recall: 0.2138
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 774.80, product: 517.50, relation: 9171.90, A/M: 2.29%
+>Average: precision: 0.0444 | recall: 0.2086
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 774.80, product: 517.50, relation: 9171.90, A/M: 2.29%
+>Average: precision: 0.0463 | recall: 0.2277
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 774.80, product: 517.50, relation: 9171.90, A/M: 2.29%
+>Average: precision: 0.0387 | recall: 0.2343
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 774.80, product: 517.50, relation: 9171.90, A/M: 2.29%
+>Average: precision: 0.0446 | recall: 0.2124
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.10), keyword: 774.80, product: 517.50, relation: 9171.90, A/M: 2.29%
+>Average: precision: 0.0460 | recall: 0.2274
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   5==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0296 | recall: 0.2139
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.20), keyword: 774.70, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0447 | recall: 0.2104
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.20), keyword: 774.70, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0464 | recall: 0.2276
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.20), keyword: 774.70, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0387 | recall: 0.2344
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.20), keyword: 774.70, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0449 | recall: 0.2163
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.20), keyword: 774.70, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0462 | recall: 0.2298
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   6==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0296 | recall: 0.2139
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.80), keyword: 774.60, product: 517.40, relation: 9173.20, A/M: 2.29%
+>Average: precision: 0.0451 | recall: 0.2138
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.80), keyword: 774.60, product: 517.40, relation: 9173.20, A/M: 2.29%
+>Average: precision: 0.0464 | recall: 0.2265
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.80), keyword: 774.60, product: 517.40, relation: 9173.20, A/M: 2.29%
+>Average: precision: 0.0385 | recall: 0.2334
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.80), keyword: 774.60, product: 517.40, relation: 9173.20, A/M: 2.29%
+>Average: precision: 0.0450 | recall: 0.2155
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.80), keyword: 774.60, product: 517.40, relation: 9173.20, A/M: 2.29%
+>Average: precision: 0.0462 | recall: 0.2273
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   7==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0296 | recall: 0.2138
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.90), keyword: 774.70, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0440 | recall: 0.2106
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.90), keyword: 774.70, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0456 | recall: 0.2270
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.90), keyword: 774.70, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0386 | recall: 0.2336
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.90), keyword: 774.70, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0442 | recall: 0.2150
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.90), keyword: 774.70, product: 517.20, relation: 9172.40, A/M: 2.29%
+>Average: precision: 0.0456 | recall: 0.2285
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   8==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0296 | recall: 0.2141
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 45.70), keyword: 774.80, product: 517.50, relation: 9171.20, A/M: 2.29%
+>Average: precision: 0.0443 | recall: 0.2122
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 45.70), keyword: 774.80, product: 517.50, relation: 9171.20, A/M: 2.29%
+>Average: precision: 0.0459 | recall: 0.2277
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 45.70), keyword: 774.80, product: 517.50, relation: 9171.20, A/M: 2.29%
+>Average: precision: 0.0386 | recall: 0.2341
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 45.70), keyword: 774.80, product: 517.50, relation: 9171.20, A/M: 2.29%
+>Average: precision: 0.0443 | recall: 0.2150
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 45.70), keyword: 774.80, product: 517.50, relation: 9171.20, A/M: 2.29%
+>Average: precision: 0.0457 | recall: 0.2283
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   9==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0294 | recall: 0.2141
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 774.50, product: 517.60, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0445 | recall: 0.2105
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 774.50, product: 517.60, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0462 | recall: 0.2265
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 774.50, product: 517.60, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0386 | recall: 0.2332
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 774.50, product: 517.60, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0449 | recall: 0.2175
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 774.50, product: 517.60, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0462 | recall: 0.2317
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment  10==============================
+Running Hottest Recommender[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0290 | recall: 0.2201
+
+Running Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 775.20, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0445 | recall: 0.2088
+
+Running Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 775.20, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0461 | recall: 0.2255
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 775.20, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0386 | recall: 0.2322
+
+Running Linear Sequenced Keyword Recommender with BC[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 775.20, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0451 | recall: 0.2173
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=15] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 46.00), keyword: 775.20, product: 517.50, relation: 9173.10, A/M: 2.29%
+>Average: precision: 0.0464 | recall: 0.2316
+
+------------------------------Experiment End------------------------------
+
+Precision: 0.0459 | Recall 0.2268 -- Keyword Recommender with BC-IPF[N=15]
+Precision: 0.0457 | Recall 0.2290 -- Linear Sequenced Keyword Recommender with BC-IPF[N=15]
+Precision: 0.0444 | Recall 0.2157 -- Linear Sequenced Keyword Recommender with BC[N=15]
+Precision: 0.0442 | Recall 0.2104 -- Keyword Recommender with BC[N=15]
+Precision: 0.0386 | Recall 0.2336 -- Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=15]
+Precision: 0.0296 | Recall 0.2122 -- Hottest Recommender[N=15]
+
+///////////////////////////////// N = 20 /////////////////////////////////
+REPEAT = 10
+==============================Experiment   1==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0279 | recall: 0.2471
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.70), keyword: 774.70, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0421 | recall: 0.2509
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.70), keyword: 774.70, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0434 | recall: 0.2665
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.70), keyword: 774.70, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0354 | recall: 0.2740
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.70), keyword: 774.70, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0422 | recall: 0.2545
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.70), keyword: 774.70, product: 517.40, relation: 9172.50, A/M: 2.29%
+>Average: precision: 0.0433 | recall: 0.2689
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   2==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0279 | recall: 0.2508
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.50), keyword: 774.80, product: 517.20, relation: 9172.30, A/M: 2.29%
+>Average: precision: 0.0422 | recall: 0.2537
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.50), keyword: 774.80, product: 517.20, relation: 9172.30, A/M: 2.29%
+>Average: precision: 0.0434 | recall: 0.2684
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.50), keyword: 774.80, product: 517.20, relation: 9172.30, A/M: 2.29%
+>Average: precision: 0.0358 | recall: 0.2765
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.50), keyword: 774.80, product: 517.20, relation: 9172.30, A/M: 2.29%
+>Average: precision: 0.0422 | recall: 0.2584
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.50), keyword: 774.80, product: 517.20, relation: 9172.30, A/M: 2.29%
+>Average: precision: 0.0433 | recall: 0.2716
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   3==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0277 | recall: 0.2549
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.30), keyword: 774.70, product: 517.30, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0416 | recall: 0.2506
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.30), keyword: 774.70, product: 517.30, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0429 | recall: 0.2657
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.30), keyword: 774.70, product: 517.30, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0352 | recall: 0.2733
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.30), keyword: 774.70, product: 517.30, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0415 | recall: 0.2515
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.30), keyword: 774.70, product: 517.30, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0425 | recall: 0.2661
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   4==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0277 | recall: 0.2584
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.40, product: 517.40, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0424 | recall: 0.2525
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.40, product: 517.40, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0437 | recall: 0.2682
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.40, product: 517.40, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0357 | recall: 0.2762
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.40, product: 517.40, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0424 | recall: 0.2572
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.40, product: 517.40, relation: 9173.30, A/M: 2.29%
+>Average: precision: 0.0435 | recall: 0.2701
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   5==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0277 | recall: 0.2581
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.40), keyword: 775.00, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0422 | recall: 0.2533
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.40), keyword: 775.00, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0432 | recall: 0.2674
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.40), keyword: 775.00, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0354 | recall: 0.2755
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.40), keyword: 775.00, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0424 | recall: 0.2581
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.40), keyword: 775.00, product: 517.60, relation: 9173.00, A/M: 2.29%
+>Average: precision: 0.0436 | recall: 0.2721
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   6==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0276 | recall: 0.2580
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.10), keyword: 775.20, product: 517.40, relation: 9174.40, A/M: 2.29%
+>Average: precision: 0.0425 | recall: 0.2523
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.10), keyword: 775.20, product: 517.40, relation: 9174.40, A/M: 2.29%
+>Average: precision: 0.0437 | recall: 0.2663
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.10), keyword: 775.20, product: 517.40, relation: 9174.40, A/M: 2.29%
+>Average: precision: 0.0357 | recall: 0.2742
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.10), keyword: 775.20, product: 517.40, relation: 9174.40, A/M: 2.29%
+>Average: precision: 0.0426 | recall: 0.2582
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.10), keyword: 775.20, product: 517.40, relation: 9174.40, A/M: 2.29%
+>Average: precision: 0.0436 | recall: 0.2706
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   7==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0277 | recall: 0.2586
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 775.40, product: 517.30, relation: 9172.10, A/M: 2.29%
+>Average: precision: 0.0426 | recall: 0.2508
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 775.40, product: 517.30, relation: 9172.10, A/M: 2.29%
+>Average: precision: 0.0438 | recall: 0.2661
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 775.40, product: 517.30, relation: 9172.10, A/M: 2.29%
+>Average: precision: 0.0354 | recall: 0.2738
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 775.40, product: 517.30, relation: 9172.10, A/M: 2.29%
+>Average: precision: 0.0429 | recall: 0.2563
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 775.40, product: 517.30, relation: 9172.10, A/M: 2.29%
+>Average: precision: 0.0441 | recall: 0.2711
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   8==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0277 | recall: 0.2582
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 774.60, product: 517.40, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0419 | recall: 0.2511
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 774.60, product: 517.40, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0434 | recall: 0.2683
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 774.60, product: 517.40, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0356 | recall: 0.2759
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 774.60, product: 517.40, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0423 | recall: 0.2593
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 51.10), keyword: 774.60, product: 517.40, relation: 9174.20, A/M: 2.29%
+>Average: precision: 0.0437 | recall: 0.2735
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment   9==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0276 | recall: 0.2610
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.60), keyword: 775.20, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0421 | recall: 0.2507
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.60), keyword: 775.20, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0432 | recall: 0.2644
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.60), keyword: 775.20, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0353 | recall: 0.2721
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.60), keyword: 775.20, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0422 | recall: 0.2547
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.60), keyword: 775.20, product: 517.50, relation: 9172.90, A/M: 2.29%
+>Average: precision: 0.0432 | recall: 0.2682
+
+------------------------------Experiment End------------------------------
+
+==============================Experiment  10==============================
+Running Hottest Recommender[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+>Average: precision: 0.0274 | recall: 0.2636
+
+Running Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0421 | recall: 0.2506
+
+Running Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0435 | recall: 0.2677
+
+Running Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0355 | recall: 0.2756
+
+Running Linear Sequenced Keyword Recommender with BC[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0424 | recall: 0.2571
+
+Running Linear Sequenced Keyword Recommender with BC-IPF[N=20] ...
+Rounds: 1 2 3 4 5 6 7 8 9 10 
+Experiment statistics:
+query: 4101.30 (not enough 50.80), keyword: 774.60, product: 517.50, relation: 9172.20, A/M: 2.29%
+>Average: precision: 0.0436 | recall: 0.2726
+
+------------------------------Experiment End------------------------------
+
+Precision: 0.0434 | Recall 0.2705 -- Linear Sequenced Keyword Recommender with BC-IPF[N=20]
+Precision: 0.0434 | Recall 0.2669 -- Keyword Recommender with BC-IPF[N=20]
+Precision: 0.0423 | Recall 0.2565 -- Linear Sequenced Keyword Recommender with BC[N=20]
+Precision: 0.0422 | Recall 0.2517 -- Keyword Recommender with BC[N=20]
+Precision: 0.0355 | Recall 0.2747 -- Keyword Recommender with Hottest Recommender fallback with BC-IPF[N=20]
+Precision: 0.0277 | Recall 0.2569 -- Hottest Recommender[N=20]
