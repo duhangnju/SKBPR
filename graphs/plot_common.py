@@ -6,15 +6,16 @@ marker_settings = {
     'SKBPR-BC': 'gs-',
     'SKBPR-BCIPF': 'b^-',
     'SKBPR-BCIPF-FB': 'mD-',
+    'SKBPR-BC-SEQ': 'k*-',
 }
 
 def output_dataset(fig, title, labels, pos, dataset, axis):
     ax = fig.add_subplot(pos)
     for method, data in dataset.iteritems():
         marker = marker_settings[method]
-        x_data, y_data = data
+        x_data, y_data, yerr_minus, yerr_plus = data
         # plot data with lines
-        ax.plot(x_data, y_data, marker, label=method)
+        ax.errorbar(x_data, y_data, yerr=[yerr_minus, yerr_plus], fmt=marker, label=method)
         for n, d in zip(x_data, y_data):
             # show precise number
             ax.text(n, d, '%.4f' % d)
