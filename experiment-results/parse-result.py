@@ -69,6 +69,8 @@ def parse_repeated_experiment(N, lines):
 
     # get average
     average_stats = dict(parse_repeated_experiment_results(expect('Precision', lines)) for i in range(METHOD_NUM))
+
+    final_results = {}
     for m, avg_stats in average_stats.iteritems():
         avg_prec, avg_rec = avg_stats
         method_exp_results = exp_results[m]
@@ -76,8 +78,16 @@ def parse_repeated_experiment(N, lines):
         min_prec = min(method_exp_results, key=lambda t:t[0])[0]
         max_rec = max(method_exp_results, key=lambda t:t[1])[1]
         min_rec = min(method_exp_results, key=lambda t:t[1])[1]
-        data = (avg_prec, avg_prec-min_prec, max_prec-avg_prec, avg_rec, avg_rec-min_rec, max_rec-avg_rec, m)
-        print 'P([-/+]): %.4f(%.4f/%.4f) | R([-/+]): %.4f(%.4f/%.4f) - %s' % data
+        final_results[m] = (avg_prec, avg_prec-min_prec, max_prec-avg_prec, avg_rec, avg_rec-min_rec, max_rec-avg_rec)
+
+        data = final_results[m] + (m,)
+        #print 'P([-/+]): %.4f(%.4f/%.4f) | R([-/+]): %.4f(%.4f/%.4f) - %s' % data
+
+    return final_results
+
+
+def print_4f(l):
+    return '[' + ', '.join('%.4f'%i for i in l) + ']'
 
 
 f = open(sys.argv[1])
@@ -86,10 +96,23 @@ db_info = lines.next()
 db = re.search(r'\[((\w|_)+)\]', db_info).group(1)
 print 'Database: %s' % db
 
+results = defaultdict(lambda: ([], [], [], [], [], [],))
 for i in range(EXP_NUM):
     line = expect(N_START, lines)
     N = parse_int_from(line)
 
-    parse_repeated_experiment(N, lines)
+    for m, res in parse_repeated_experiment(N, lines).iteritems():
+        for i, d in enumerate(res):
+            results[m][i].append(d)
+
+# print data organized by methods
+for m, res in results.iteritems():
+    print m
+    print '  Precision', print_4f(res[0])
+    print '          -', print_4f(res[1])
+    print '          +', print_4f(res[2])
+    print '     Recall', print_4f(res[3])
+    print '          -', print_4f(res[4])
+    print '          +', print_4f(res[5])
 
 f.close()
